@@ -6,15 +6,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Transform playerCameraPov;
+
     [SerializeField] float mouseSensitivity = 3.5f;
+    [SerializeField] [Range(0, 0.5f)] float mouseSmoothing = 0.02f;
     [SerializeField] bool CursorCentered = true;
 
-    float cameraAngle;
-
     [SerializeField] float movementSpeed = 5.0f;
+    [SerializeField] float runningSpeed = 20.0f;
     [SerializeField] [Range(0, 0.5f)] float moveSmoothing = 0.35f;
-    [SerializeField] [Range(0, 0.5f)] float mouseSmoothing = 0.02f;
+    [SerializeField] float gravity = -10.0f;
+    [SerializeField] float velocityY;
 
+    float cameraAngle;
     CharacterController controller = null;
 
     Vector2 currentDirection = Vector2.zero;
@@ -63,11 +66,22 @@ public class PlayerController : MonoBehaviour
 
         currentDirection = Vector2.SmoothDamp(currentDirection, targetDirection, ref currentDirectionVelocity, moveSmoothing);
 
-        Vector3 velocity = (transform.forward * currentDirection.y + transform.right * currentDirection.x) * movementSpeed;
+        if (controller.isGrounded)
+        {
+            velocityY = 0.0f;
+        }
+        velocityY += gravity * Time.deltaTime;
 
+        Vector3 velocity = (transform.forward * currentDirection.y + transform.right * currentDirection.x) * movementSpeed + Vector3.up * velocityY;
 
-
-        controller.Move(velocity * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            controller.Move(velocity * Time.deltaTime);
+        }
+        else
+        {
+            controller.Move(velocity * Time.deltaTime);
+        }
 
 
     }
