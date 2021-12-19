@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerLifeController : MonoBehaviour
 {
-    [SerializeField] private int playerLife = 100;
+    [SerializeField] private float playerLife = 100f;
     [SerializeField] private Transform playerHome;
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class PlayerLifeController : MonoBehaviour
 
     }
     // Get Damage Method
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
         playerLife -= damage;
         Debug.Log($"Player has been hit for {damage} hit points. ");
@@ -30,7 +30,7 @@ public class PlayerLifeController : MonoBehaviour
     }
 
     // Healing Method
-    public void Healing(int heal)
+    public void Healing(float heal)
     {
         playerLife += heal;
         Debug.Log($"Player has recovered  {heal} health. ");

@@ -25,7 +25,7 @@ public class EnemyAIMelee : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     private bool attackPlayer = false;
-    public int damage = 10;
+    public float damage = 10;
 
     // States
     public float sightRange, attackRange, animAttackRange;

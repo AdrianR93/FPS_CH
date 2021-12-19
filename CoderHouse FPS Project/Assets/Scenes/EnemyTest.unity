@@ -1462,7 +1462,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLife: 100
-  heal: 20
   playerHome: {fileID: 813798465}
 --- !u!4 &655482873 stripped
 Transform:
@@ -1470,6 +1469,22 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 901571435}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &655482874
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655482868}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &712482021
 PrefabInstance:
   m_ObjectHideFlags: 0
