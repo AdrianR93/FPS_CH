@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerLifeController : MonoBehaviour
 {
     [SerializeField] private int playerLife = 100;
-    [SerializeField] private int heal = 20;
     [SerializeField] private Transform playerHome;
 
     // Start is called before the first frame update

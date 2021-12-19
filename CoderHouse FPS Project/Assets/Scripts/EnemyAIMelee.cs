@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAIMelee : MonoBehaviour
 {
     public NavMeshAgent agent;
 
     public Transform player;
 
     public LayerMask whatIsGround, WhatIsPlayer;
+
+    // Enemy Stats
+    public int enemyHealth = 100;
 
     // Patrolling
     public Vector3 walkPoint;
@@ -22,6 +25,7 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     private bool attackPlayer = false;
+    public int damage = 10;
 
     // States
     public float sightRange, attackRange, animAttackRange;
@@ -50,8 +54,7 @@ public class EnemyAI : MonoBehaviour
 
         if (!playerInSightRange && !playerInAttackRange)
         {
-            attackPlayer = false;
-            isPatrolling = true;
+
             Patrolling();
             Debug.Log("Patrolling");
             return;
@@ -60,8 +63,7 @@ public class EnemyAI : MonoBehaviour
         
         if (playerInSightRange && !playerInAttackRange)
         {
-            isPatrolling = true;
-            attackPlayer = false;
+
             ChasePlayer();
             Debug.Log("Chasing Player");
             return;
@@ -77,6 +79,11 @@ public class EnemyAI : MonoBehaviour
             return;
 
         } 
+
+        if (enemyHealth < 1)
+        {
+            Death();
+        }
         
     }
     private void Patrolling()
@@ -125,6 +132,9 @@ public class EnemyAI : MonoBehaviour
         //Make sure enemy doesnt move
         agent.SetDestination(transform.position);
         transform.LookAt(player);
+        GetComponent<Animator>().Play("thc4_arma|st_attack3");
+
+
 
         if (!alreadyAttacked)
         {
@@ -140,4 +150,22 @@ public class EnemyAI : MonoBehaviour
         {
         alreadyAttacked = false;
         }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Player")) return;
+
+        var playerLifeController = collision.gameObject.GetComponent<PlayerLifeController>();
+        if (playerLifeController != null)
+            playerLifeController.GetDamage(damage);
+
+
     }
+
+    private void Death()
+    {
+        GetComponent<Animator>().Play("thc4_arma|st_death");
+        Destroy(gameObject);
+
+    }
+}
