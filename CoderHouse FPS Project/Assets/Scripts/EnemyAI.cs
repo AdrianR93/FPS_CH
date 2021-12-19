@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    bool attackPlayer;
 
     // States
     public float sightRange, attackRange;
@@ -49,16 +50,19 @@ public class EnemyAI : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange)
         {
             Patrolling();
+            attackPlayer = false;
         }
 
         if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
+            attackPlayer = false;
         }
 
         if (playerInSightRange && playerInAttackRange)
         {
             AttackPlayer();
+            attackPlayer = true;
         }
 
     }
@@ -100,6 +104,7 @@ public class EnemyAI : MonoBehaviour
     {
 
         agent.SetDestination(player.position);
+        attackPlayer = false;
 
     }
 
@@ -108,6 +113,7 @@ public class EnemyAI : MonoBehaviour
         //Make sure enemy doesnt move
         agent.SetDestination(transform.position);
         transform.LookAt(player);
+        attackPlayer = true;
 
         if (!alreadyAttacked)
         {
