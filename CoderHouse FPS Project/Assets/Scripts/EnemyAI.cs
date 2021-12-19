@@ -15,15 +15,16 @@ public class EnemyAI : MonoBehaviour
     public Vector3 walkPoint;
     bool walkpointSet;
     public float walkPointRange;
+    bool isPatrolling;
 
 
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    bool attackPlayer;
+    private bool attackPlayer = false;
 
     // States
-    public float sightRange, attackRange;
+    public float sightRange, attackRange, animAttackRange;
     public bool playerInSightRange, playerInAttackRange;
 
     private void Awake()
@@ -49,22 +50,34 @@ public class EnemyAI : MonoBehaviour
 
         if (!playerInSightRange && !playerInAttackRange)
         {
-            Patrolling();
             attackPlayer = false;
-        }
+            isPatrolling = true;
+            Patrolling();
+            Debug.Log("Patrolling");
+            return;
 
+        } 
+        
         if (playerInSightRange && !playerInAttackRange)
         {
-            ChasePlayer();
+            isPatrolling = true;
             attackPlayer = false;
-        }
+            ChasePlayer();
+            Debug.Log("Chasing Player");
+            return;
+
+        } 
 
         if (playerInSightRange && playerInAttackRange)
         {
-            AttackPlayer();
+            isPatrolling = false;
             attackPlayer = true;
-        }
+            AttackPlayer();
+            Debug.Log("Atacking Player");
+            return;
 
+        } 
+        
     }
     private void Patrolling()
     {
@@ -104,7 +117,6 @@ public class EnemyAI : MonoBehaviour
     {
 
         agent.SetDestination(player.position);
-        attackPlayer = false;
 
     }
 
@@ -113,7 +125,6 @@ public class EnemyAI : MonoBehaviour
         //Make sure enemy doesnt move
         agent.SetDestination(transform.position);
         transform.LookAt(player);
-        attackPlayer = true;
 
         if (!alreadyAttacked)
         {
