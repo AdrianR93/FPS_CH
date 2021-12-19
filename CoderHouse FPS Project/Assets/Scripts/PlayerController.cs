@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 0.5f)] float mouseSmoothing = 0.02f;
     [SerializeField] bool CursorCentered = true;
 
-    [SerializeField] float movementSpeed = 5.0f;
+    [SerializeField] float walkSpeed = 5.0f;
     [SerializeField] float runningSpeed = 20.0f;
+
+
     [SerializeField] [Range(0, 0.5f)] float moveSmoothing = 0.35f;
     [SerializeField] float gravity = -10.0f;
     [SerializeField] float velocityY;
+    [SerializeField] float jumpingSpeed;
 
     float cameraAngle;
     CharacterController controller = null;
@@ -62,6 +65,13 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayerMovement()
     {
+        float speed = walkSpeed;
+
+        if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift) && controller.isGrounded)
+        {
+            speed = runningSpeed;
+        }
+
         Vector2 targetDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
         currentDirection = Vector2.SmoothDamp(currentDirection, targetDirection, ref currentDirectionVelocity, moveSmoothing);
@@ -72,16 +82,18 @@ public class PlayerController : MonoBehaviour
         }
         velocityY += gravity * Time.deltaTime;
 
-        Vector3 velocity = (transform.forward * currentDirection.y + transform.right * currentDirection.x) * movementSpeed + Vector3.up * velocityY;
+        Vector3 velocity = (transform.forward * currentDirection.y + transform.right * currentDirection.x) * speed + Vector3.up * velocityY;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
-            controller.Move(velocity * Time.deltaTime);
+            velocityY = jumpingSpeed;
         }
-        else
-        {
-            controller.Move(velocity * Time.deltaTime);
-        }
+
+        velocityY += gravity * Time.deltaTime;
+
+        velocity.y = velocityY;
+
+        controller.Move(velocity * Time.deltaTime);
 
 
     }
