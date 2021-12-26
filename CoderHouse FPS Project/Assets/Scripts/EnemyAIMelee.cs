@@ -18,7 +18,6 @@ public class EnemyAIMelee : MonoBehaviour
     public Vector3 walkPoint;
     bool walkpointSet;
     public float walkPointRange;
-    bool isPatrolling;
 
 
     //Attacking 
@@ -29,7 +28,7 @@ public class EnemyAIMelee : MonoBehaviour
 
     // States
     public float sightRange, attackRange, animAttackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange, playerInAttackRange, isDead;
 
     private void Awake()
     {
@@ -42,6 +41,7 @@ public class EnemyAIMelee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
 
     }
 
@@ -72,8 +72,6 @@ public class EnemyAIMelee : MonoBehaviour
 
         if (playerInSightRange && playerInAttackRange)
         {
-            isPatrolling = false;
-            attackPlayer = true;
             AttackPlayer();
             Debug.Log("Atacking Player");
             return;
@@ -164,8 +162,13 @@ public class EnemyAIMelee : MonoBehaviour
 
     private void Death()
     {
-        GetComponent<Animator>().Play("thc4_arma|st_death");
-        Destroy(gameObject);
+        if (enemyHealth <= 0)
+        {
+            isDead = true;
+            Destroy(gameObject, 5f);
+            return;
+        }
+        
 
     }
 }

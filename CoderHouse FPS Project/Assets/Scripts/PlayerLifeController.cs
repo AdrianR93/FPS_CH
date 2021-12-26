@@ -33,7 +33,7 @@ public class PlayerLifeController : MonoBehaviour
     public void Healing(float heal)
     {
         playerLife += heal;
-        Debug.Log($"Player has recovered  {heal} health. ");
+        Debug.Log($"Player has recovered {heal} health. ");
         if (playerLife >= 100)
         {
             playerLife = 100;
