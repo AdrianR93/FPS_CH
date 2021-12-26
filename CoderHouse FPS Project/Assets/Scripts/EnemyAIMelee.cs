@@ -23,12 +23,24 @@ public class EnemyAIMelee : MonoBehaviour
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    private bool attackPlayer = false;
     public float damage = 10;
 
     // States
     public float sightRange, attackRange, animAttackRange;
-    public bool playerInSightRange, playerInAttackRange, isDead;
+    public bool playerInSightRange, playerInAttackRange;
+
+    Animator _animator;
+
+    // bool to set trigger for animation
+    public bool isAttacking;
+    public bool isDead
+    {
+        get
+        {
+            return enemyHealth == 0;
+        }
+    }
+
 
     private void Awake()
     {
@@ -41,46 +53,52 @@ public class EnemyAIMelee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isDead = false;
+        _animator = GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check for sight and Attack Range
+
+
+// Check for sight and Attack Range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
-
-        if (!playerInSightRange && !playerInAttackRange)
+        if (!isDead)
         {
+            if (!playerInSightRange && !playerInAttackRange)
+            {
 
-            Patrolling();
-            Debug.Log("Patrolling");
-            return;
+                Patrolling();
+                Debug.Log("Patrolling");
+                return;
 
-        } 
-        
-        if (playerInSightRange && !playerInAttackRange)
-        {
+            }
 
-            ChasePlayer();
-            Debug.Log("Chasing Player");
-            return;
+            if (playerInSightRange && !playerInAttackRange)
+            {
 
-        } 
+                ChasePlayer();
+                Debug.Log("Chasing Player");
+                return;
 
-        if (playerInSightRange && playerInAttackRange)
-        {
-            AttackPlayer();
-            Debug.Log("Atacking Player");
-            return;
+            }
 
-        } 
+            if (playerInSightRange && playerInAttackRange)
 
-        if (enemyHealth < 1)
-        {
-            Death();
+            {
+                AttackPlayer();
+                Debug.Log("Atacking Player");
+                _animator.SetTrigger("attack");
+                return;
+
+            }
+
+            if (enemyHealth < 1)
+            {
+                Death();
+            }
         }
         
     }
@@ -130,7 +148,6 @@ public class EnemyAIMelee : MonoBehaviour
         //Make sure enemy doesnt move
         agent.SetDestination(transform.position);
         transform.LookAt(player);
-        GetComponent<Animator>().Play("thc4_arma|st_attack3");
 
 
 
@@ -141,6 +158,11 @@ public class EnemyAIMelee : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+
+        if (isAttacking)
+        {
+            _animator.SetTrigger("attack");
+        }    
     }
 
     private void ResetAttack()
@@ -160,11 +182,25 @@ public class EnemyAIMelee : MonoBehaviour
 
     }
 
+    private void TakeDamage(int damage)
+    {
+        enemyHealth -= damage;
+        if(enemyHealth < 0)
+        {
+            enemyHealth = 0;
+        }
+
+        if(isDead)
+        {
+            _animator.SetTrigger("death");
+        }
+
+    }
+
     private void Death()
     {
         if (enemyHealth <= 0)
         {
-            isDead = true;
             Destroy(gameObject, 5f);
             return;
         }

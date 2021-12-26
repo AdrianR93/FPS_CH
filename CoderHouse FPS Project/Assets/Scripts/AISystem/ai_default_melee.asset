@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207e7e8eb0c497d438bb589e8e75a21f, type: 3}
   m_Name: ai_default_melee
   m_EditorClassIdentifier: 
-  maxTime: 1
-  maxDistance: 2
+  maxTime: 2
+  maxDistance: 10
+  maxSightDistance: 15

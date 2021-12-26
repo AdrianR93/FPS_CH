@@ -23,7 +23,6 @@ public class EnemyAIShooter : MonoBehaviour
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    private bool attackPlayer = false;
     public float damage = 10;
     public GameObject projectile;
     public Transform spawnBullet;
