@@ -12,6 +12,7 @@ public class AiLocomotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }
@@ -19,6 +20,7 @@ public class AiLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Script for blend tree 
         if (agent.hasPath)
 
         {
