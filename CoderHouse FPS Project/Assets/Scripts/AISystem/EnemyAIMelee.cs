@@ -12,7 +12,7 @@ public class EnemyAIMelee : MonoBehaviour
     public LayerMask whatIsGround, WhatIsPlayer;
 
     // Enemy Stats
-    public int enemyHealth = 100;
+    [SerializeField] private float enemyHealth = 100;
 
     // Patrolling
     public Vector3 walkPoint;
@@ -182,7 +182,7 @@ public class EnemyAIMelee : MonoBehaviour
 
     }
     // Trigger to set death animation
-    private void TakeDamage(int damage)
+    private void TakeDamage(float damage)
     {
         enemyHealth -= damage;
         if (enemyHealth < 0)
@@ -201,6 +201,7 @@ public class EnemyAIMelee : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Destroy(gameObject, 5f);
+
             return;
         }
         
