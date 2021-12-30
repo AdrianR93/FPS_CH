@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] private int _score;
     public Text pointsText;
     public bool _playerIsDead;
     public Transform gameOver;
+    public Transform lights;
+    public Transform player;
 
 
     private void Awake()
@@ -19,17 +21,30 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("singleton awake");
         }
+        else
+        {
+            instance = this;
+        }
     }
 
     public void AddScore(int pointsToAdd)
     {
-        _score += pointsToAdd;
-        Debug.Log($"You has died {_score} times");
+
     }
 
     public void GameOverScreen()
     {
-        gameObject.SetActive(true);
+        gameOver.gameObject.SetActive(true);
+
+
+
+    }
+
+    public void RestartButtong()
+    {
+        Debug.Log("Button Test");
+        SceneManager.LoadScene("EnemyTest");
+        
     }
 }
 
