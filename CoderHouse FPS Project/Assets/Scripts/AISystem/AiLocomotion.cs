@@ -20,15 +20,18 @@ public class AiLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Script for blend tree 
-        if (agent.hasPath)
+        if (!Target.isEnemyDead == true)
+        {
+            // Script for blend tree 
+            if (agent.hasPath)
 
-        {
-            animator.SetFloat("Speed", agent.velocity.magnitude);
-        }
-        else
-        {
-            animator.SetFloat("Speed", 0);
+            {
+                animator.SetFloat("Speed", agent.velocity.magnitude);
+            }
+            else
+            {
+                animator.SetFloat("Speed", 0);
+            }
         }
     
     }
