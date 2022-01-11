@@ -4,6 +4,17 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     [SerializeField] float health = 50.0f;
+    Animator _animator;
+    public static bool isEnemyDead;
+
+    public void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
+    public void Update()
+    {
+    }
 
     public void TakeDamage (float amount)
     {
@@ -12,10 +23,14 @@ public class Target : MonoBehaviour
         {
             Die();
         }
+
     }
 
     private void Die()
     {
-        Destroy(gameObject);
+        isEnemyDead = true;
+        _animator.SetTrigger("dead");
+        Destroy(gameObject, 5f);
+        return;
     }
 }

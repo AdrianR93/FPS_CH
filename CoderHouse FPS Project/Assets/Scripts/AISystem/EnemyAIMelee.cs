@@ -11,8 +11,11 @@ public class EnemyAIMelee : MonoBehaviour
 
     public LayerMask whatIsGround, WhatIsPlayer;
 
+    Animator _animator;
+
     // Enemy Stats
-    [SerializeField] private float enemyHealth = 100;
+   // [SerializeField] private float health = 100;
+    private bool isEnemyDead;
 
     // Patrolling
     public Vector3 walkPoint;
@@ -29,18 +32,10 @@ public class EnemyAIMelee : MonoBehaviour
     public float sightRange, attackRange, animAttackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    Animator _animator;
+
 
     // bool to set trigger for animation
     public bool isAttacking;
-    public bool isDead
-    {
-        get
-        {
-            return enemyHealth == 0;
-        }
-    }
-
 
     private void Awake()
     {
@@ -61,43 +56,43 @@ public class EnemyAIMelee : MonoBehaviour
     void Update()
     {
 
-
+        
         // Check for sight and Attack Range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
-        if (!isDead)
+
+        gameObject.GetComponent<Target>();
+        if (!Target.isEnemyDead == true)
         {
-            if (!playerInSightRange && !playerInAttackRange)
             {
+                if (!playerInSightRange && !playerInAttackRange)
+                {
 
-                Patrolling();
-                Debug.Log("Patrolling");
-                return;
+                    Patrolling();
+                    Debug.Log("Patrolling");
+                    return;
 
-            }
+                }
 
-            if (playerInSightRange && !playerInAttackRange)
-            {
+                if (playerInSightRange && !playerInAttackRange)
+                {
 
-                ChasePlayer();
-                Debug.Log("Chasing Player");
-                return;
+                    ChasePlayer();
+                    Debug.Log("Chasing Player");
+                    return;
 
-            }
-
+                } 
+    
             if (playerInSightRange && playerInAttackRange)
 
-            {
-                AttackPlayer();
-                Debug.Log("Atacking Player");
-                _animator.SetTrigger("attack");
-                return;
+                {
+                    AttackPlayer();
+                    Debug.Log("Atacking Player");
+                    _animator.SetTrigger("attack");
+                    return;
 
-            }
+                }
 
-            if (enemyHealth < 1)
-            {
-                Death();
             }
         }
 
@@ -182,29 +177,21 @@ public class EnemyAIMelee : MonoBehaviour
 
     }
     // Trigger to set death animation
-    private void TakeDamage(float damage)
+  /*  public void TakeDamage(float amount)
     {
-        enemyHealth -= damage;
-        if (enemyHealth < 0)
+        health -= amount;
+        if (health <= 0f)
         {
-            enemyHealth = 0;
+            Die();
         }
-
-        if (isDead)
-        {
-            _animator.SetTrigger("death");
-        }
-    }
-
-    private void Death()
-    {
-        if (enemyHealth <= 0)
-        {
-            Destroy(gameObject, 5f);
-
-            return;
-        }
-        
 
     }
+    private void Die()
+    {
+        isEnemyDead = true;
+        _animator.SetTrigger("dead");
+        Destroy(gameObject, 5f);
+        return;
+    }*/
 }
+

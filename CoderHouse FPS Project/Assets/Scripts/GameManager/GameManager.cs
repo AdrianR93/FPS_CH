@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public Text pointsText;
     public bool _playerIsDead;
     public Transform gameOver;
-    public Transform lights;
     public Transform player;
 
 
@@ -35,16 +34,17 @@ public class GameManager : MonoBehaviour
     public void GameOverScreen()
     {
         gameOver.gameObject.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
 
 
 
     }
 
-    public void RestartButtong()
+    public void QuitButton()
     {
-        Debug.Log("Button Test");
-        SceneManager.LoadScene("EnemyTest");
-        
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }
 
