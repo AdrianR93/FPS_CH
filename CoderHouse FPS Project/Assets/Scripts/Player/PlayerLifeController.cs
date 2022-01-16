@@ -5,13 +5,16 @@ using UnityEngine;
 public class PlayerLifeController : MonoBehaviour
 {
     GameManager instance;
-    [SerializeField] private float playerLife = 100;
+    public float maxHealth = 100;
+    public float currentHealth;
+    public HealthBar healthBar;
     [SerializeField] private Transform playerHome;
     public static bool _isPlayerDead = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -23,13 +26,14 @@ public class PlayerLifeController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        playerLife -= damage;
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
         Debug.Log($"Player has been hit for {damage} hit points. ");
     }
 
     private void Death()
     {
-        if (playerLife < 1)
+        if (currentHealth < 1)
         {
             _isPlayerDead = true;
             GameManager.instance.GameOverScreen();
