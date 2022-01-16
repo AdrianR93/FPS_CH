@@ -15,6 +15,8 @@ public class Pistol : MonoBehaviour
 
     [SerializeField] float nextTimeToFire = 0f;
 
+    public LayerMask whatIsEnemy;
+
     // Update is called once per frame
     void Update()
     {
@@ -31,7 +33,7 @@ public class Pistol : MonoBehaviour
         muzzeFlash.Play();
 
         RaycastHit hit;
-        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range, whatIsEnemy))
         {
             Debug.Log(hit.transform.name);
 
