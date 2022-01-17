@@ -9,11 +9,11 @@ public class LootChestSpawn : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints = new Transform[4];
 
 
+
     void Start()
     {
         ChooseSpawnPoint();
     }
-
 
     private void ChooseSpawnPoint()
     {
@@ -21,10 +21,12 @@ public class LootChestSpawn : MonoBehaviour
         {
             CreateLootChest(spawnPoints[i]);
         }
-
     }
-    private void CreateLootChest(Transform SelectedspawnPoint)
+    private void CreateLootChest(Transform _spawnPoint
+        )
     {
-        Instantiate(LootChest, SelectedspawnPoint);
+        Instantiate(LootChest, _spawnPoint);
     }
+
+
 }
