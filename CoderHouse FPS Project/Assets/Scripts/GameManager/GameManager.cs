@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     {
         UnityEditor.EditorApplication.isPlaying = false;
     }
+
+
 }
 
 

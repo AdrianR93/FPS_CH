@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
         {
             velocityY = 0.0f;
         }
-        velocityY += gravity * Time.deltaTime;
 
         Vector3 velocity = (transform.forward * currentDirection.y + transform.right * currentDirection.x) * speed + Vector3.up * velocityY;
 

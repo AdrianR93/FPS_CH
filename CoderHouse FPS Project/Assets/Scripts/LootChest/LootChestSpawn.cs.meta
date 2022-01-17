@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 1c8582ef7e698f94c8d0ae8ec5f9802b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - LootChest: {fileID: 5569960865220116781, guid: 67636d6eb0a53b14a9e67e5e9d5b641a,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
