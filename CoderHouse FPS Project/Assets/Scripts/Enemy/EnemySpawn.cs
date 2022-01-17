@@ -13,8 +13,34 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnEnemies();
+    }
 
-        cantidadDeEnemigos = 5;// Random.Range(0, 10);
+    private void LateUpdate()
+    {
+        if (enemiesOnMap.Count <= 1)
+        {
+            SpawnEnemies();
+        }
+
+
+        int auxToRemove = -1;
+        for (int i = 0; i < enemiesOnMap.Count; i++)
+        {
+            if (enemiesOnMap[i] == null)
+            {
+                auxToRemove = i;
+            }
+        }
+        if (auxToRemove >= 0)
+        {
+            enemiesOnMap.RemoveAt(auxToRemove);
+        }
+    }
+
+    private void SpawnEnemies()
+    {
+        cantidadDeEnemigos = Random.Range(0, 10);
         Debug.Log(typesOfEnemies.Count);
 
         for (int i = 0; i < cantidadDeEnemigos; i++)
@@ -22,15 +48,12 @@ public class EnemySpawn : MonoBehaviour
             int enemyType = Random.Range(0, typesOfEnemies.Count - 1);
             CreateEnemies(typesOfEnemies[enemyType], enemySpots[i]);
         }
-
     }
-
     private void CreateEnemies(GameObject _enemyType, Transform _enemyspots)
     {
         GameObject GO = Instantiate(_enemyType, _enemyspots);
         enemiesOnMap.Add(GO);
     }
-
 
 
 }
