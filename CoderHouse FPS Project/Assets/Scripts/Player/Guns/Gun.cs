@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Gun : MonoBehaviour
 {
     [SerializeField] protected float damage = 10f;
-    [SerializeField] float range = 100f;
+    private float range = 100f;
     [SerializeField] protected float bulletForce = 100;
     [SerializeField] protected float fireRate = 20f;
 
