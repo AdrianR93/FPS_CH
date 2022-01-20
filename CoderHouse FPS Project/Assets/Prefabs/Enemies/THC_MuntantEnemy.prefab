@@ -2951,6 +2951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc99b25aaac24404f831c2a1df9499c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStatus: {fileID: 11400000, guid: b93477dfc24846849b8beeec3c4f9c00, type: 2}
   agent: {fileID: 0}
   player: {fileID: 0}
   whatIsGround:
@@ -2995,7 +2996,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a05bf6d1bada134e9552a142d101488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  enemyStatus: {fileID: 11400000, guid: b93477dfc24846849b8beeec3c4f9c00, type: 2}
+  health: 116.5
 --- !u!1 &2675153708147436904
 GameObject:
   m_ObjectHideFlags: 0
