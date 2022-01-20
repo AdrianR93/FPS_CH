@@ -879,6 +879,35 @@ Transform:
   m_Father: {fileID: 1340211117}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &139832111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5399628026839750562, guid: a388462fe1d76754991288c2c05ebb4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1642488619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &139832113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139832111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b0744030b99ee4c8be7580bd3b72b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  range: 100
+  bulletForce: 100
+  fireRate: 20
+  fpsCamera: {fileID: 1065765017}
+  muzzeFlash: {fileID: 1927199200}
+  impactEffect: {fileID: 1927199197}
+  nextTimeToFire: 1
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &140937253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4547,6 +4576,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 290ea9a194b9e7041a1f28d26dd2c692, type: 3}
+--- !u!20 &1065765017 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5398609950841396608, guid: a388462fe1d76754991288c2c05ebb4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1642488619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1067862052
 GameObject:
   m_ObjectHideFlags: 0
@@ -6809,7 +6844,8 @@ PrefabInstance:
       propertyPath: runningSpeed
       value: 29
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5398609950753662782, guid: a388462fe1d76754991288c2c05ebb4e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a388462fe1d76754991288c2c05ebb4e, type: 3}
 --- !u!1001 &1669097101
 PrefabInstance:
@@ -7852,6 +7888,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50af88759b02d74b8328377b33ab3e8, type: 3}
+--- !u!1 &1927199197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7079523780245176941, guid: a388462fe1d76754991288c2c05ebb4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1642488619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1927199200 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7079523780245176943, guid: a388462fe1d76754991288c2c05ebb4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1642488619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1983685211
 GameObject:
   m_ObjectHideFlags: 0
