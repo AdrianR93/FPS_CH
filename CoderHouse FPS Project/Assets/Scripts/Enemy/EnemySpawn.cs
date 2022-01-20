@@ -41,7 +41,6 @@ public class EnemySpawn : MonoBehaviour
     private void SpawnEnemies()
     {
         cantidadDeEnemigos = Random.Range(0, 10);
-        Debug.Log(typesOfEnemies.Count);
 
         for (int i = 0; i < cantidadDeEnemigos; i++)
         {

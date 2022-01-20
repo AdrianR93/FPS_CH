@@ -7,14 +7,13 @@ public class LootChestOpen : MonoBehaviour
     Animator _animator;
     private void Start()
     {
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
         OpenChest();
-
     }
 
 
