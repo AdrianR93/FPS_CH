@@ -15,7 +15,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected ParticleSystem muzzeFlash;
     [SerializeField] protected GameObject impactEffect;
 
-    [SerializeField] float nextTimeToFire = 0f;
+    [SerializeField] protected float nextTimeToFire = 0f;
 
     public LayerMask whatIsEnemy;
 
