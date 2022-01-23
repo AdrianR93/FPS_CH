@@ -8,21 +8,8 @@ public class Recoil : MonoBehaviour
     private Vector3 currentRotation;
     private Vector3 targetRotation;
 
-    
-    [SerializeField] private float recoilX;
-    [SerializeField] private float recoilY;
-    [SerializeField] private float recoilZ;
-
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float returnSpeed;
-    
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,9 +21,8 @@ public class Recoil : MonoBehaviour
 
     }
 
-    public void Recoilfiring()
+    public void Recoilfiring(float recoilX, float recoilY, float recoilZ)
     {
         targetRotation += new Vector3(recoilX, Random.Range(-recoilY, recoilY), Random.Range(-recoilZ, recoilZ));
-        Debug.Log("recoil GO!");
     }
 }

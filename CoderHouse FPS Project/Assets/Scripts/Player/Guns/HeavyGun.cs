@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HeavyGun : Gun
 {
-
     // Update is called once per frame
     protected override void Update()
     {
@@ -12,6 +11,7 @@ public class HeavyGun : Gun
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             base.Shoot();
+            recoil.Recoilfiring(recoilX, recoilY, recoilZ);
         }
     }
 }

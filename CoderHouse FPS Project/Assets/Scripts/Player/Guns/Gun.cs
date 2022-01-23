@@ -5,6 +5,9 @@ using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
+    protected Recoil recoil;
+
+
     [SerializeField] protected float damage = 10f;
     private float range = 100f;
     [SerializeField] protected float bulletForce = 100;
@@ -19,6 +22,16 @@ public abstract class Gun : MonoBehaviour
 
     public LayerMask whatIsEnemy;
 
+    //Recoil Stats
+    [SerializeField] protected float recoilX;
+    [SerializeField] protected float recoilY;
+    [SerializeField] protected float recoilZ;
+
+    private void Start()
+    {
+        recoil = FindObjectOfType<Recoil>();
+    }
+
 
     // Update is called once per frame
     protected virtual void Update()
@@ -27,6 +40,7 @@ public abstract class Gun : MonoBehaviour
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
+            recoil.Recoilfiring(recoilX, recoilY, recoilZ);
         }
 
 

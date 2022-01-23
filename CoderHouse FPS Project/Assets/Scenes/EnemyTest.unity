@@ -895,12 +895,17 @@ MonoBehaviour:
   bulletForce: 100
   fireRate: 20
   fpsCamera: {fileID: 5398609951384682155}
-  muzzeFlash: {fileID: 0}
-  impactEffect: {fileID: 0}
+  muzzeFlash: {fileID: 6099296663710610030, guid: 0a20045aec64e7844ae4958c3b92f80f,
+    type: 3}
+  impactEffect: {fileID: 6099296663710610028, guid: 0a20045aec64e7844ae4958c3b92f80f,
+    type: 3}
   nextTimeToFire: 1
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  recoilX: -1
+  recoilY: 1
+  recoilZ: 0.15
 --- !u!1001 &140937253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3823,11 +3828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4100892adc6fcc4a905b21f154e0395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoilX: -10
-  recoilY: -2
-  recoilZ: 0.4
-  rotationSpeed: 8
-  returnSpeed: 4
+  rotationSpeed: 6
+  returnSpeed: 2
 --- !u!1 &931198243 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1416174220442879844, guid: 4dc2293ab5c561140872035453dd1c81,
@@ -8255,7 +8257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &504974285436931590
 GameObject:
   m_ObjectHideFlags: 0
@@ -8448,7 +8450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504880963936411690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18, y: -0.14, z: 0.3789}
+  m_LocalPosition: {x: 0.18, y: -0.15, z: 0.3789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 510271558397929368}
@@ -9261,7 +9263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711023941960855729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18, y: -0.14, z: 0.47}
+  m_LocalPosition: {x: 0.18, y: -0.22, z: 0.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 708277121801577883}
@@ -10139,7 +10141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &4102860673314057446
 GameObject:
   m_ObjectHideFlags: 0
@@ -10446,6 +10448,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  recoilX: -2
+  recoilY: 2
+  recoilZ: 0.35
   numberOfBullets: 3
 --- !u!33 &5373682863862301823
 MeshFilter:
@@ -11111,7 +11116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &5399683411333756941
 GameObject:
   m_ObjectHideFlags: 0
@@ -11232,6 +11237,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  recoilX: -5
+  recoilY: 3
+  recoilZ: 0.6
 --- !u!4 &6293923630377120355
 Transform:
   m_ObjectHideFlags: 0
@@ -11274,6 +11282,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  recoilX: -4
+  recoilY: 4
+  recoilZ: 0.7
 --- !u!1 &6470544052674053797
 GameObject:
   m_ObjectHideFlags: 0
@@ -11283,6 +11294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6293923630377120355}
+  - component: {fileID: 6470544052674053799}
   m_Layer: 12
   m_Name: Holder
   m_TagString: Untagged
@@ -11290,6 +11302,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6470544052674053799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470544052674053797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3fe9b456a626f478b5c3fb6521f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedWeapon: 0
 --- !u!1001 &6562057338753718946
 PrefabInstance:
   m_ObjectHideFlags: 0

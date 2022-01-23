@@ -5,10 +5,6 @@ using UnityEngine;
 public class LongGun : Gun
 {
     [SerializeField] int numberOfBullets = 2;
-
-    private Recoil recoil;
-
-
     private void Start()
     {
         recoil = FindObjectOfType<Recoil>();
@@ -23,7 +19,7 @@ public class LongGun : Gun
             for (int i = 0; i < numberOfBullets - 1; i++)
             {
                 base.Shoot();
-                recoil.Recoilfiring();
+                recoil.Recoilfiring(recoilX, recoilY, recoilZ);
             }
         }
     }
