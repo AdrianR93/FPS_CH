@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyAIMelee : MonoBehaviour
 {
+    public EnemyStatus enemyStatus;
+
     public NavMeshAgent agent;
 
     public Transform player;
@@ -13,8 +15,7 @@ public class EnemyAIMelee : MonoBehaviour
 
     Animator _animator;
 
-    // Enemy Stats
-   // [SerializeField] private float health = 100;
+
     private bool isEnemyDead;
 
     // Patrolling
@@ -26,7 +27,7 @@ public class EnemyAIMelee : MonoBehaviour
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public float damage = 10;
+    public float damage;
 
     // States
     public float sightRange, attackRange, animAttackRange;
@@ -48,7 +49,9 @@ public class EnemyAIMelee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         _animator = GetComponent<Animator>();
+        damage = enemyStatus.damage;
 
     }
 

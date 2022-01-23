@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    [SerializeField] float health = 50.0f;
+    public EnemyStatus enemyStatus;
+    public float health;
     Animator _animator;
     public static bool isEnemyDead;
 
     public void Start()
     {
         _animator = GetComponent<Animator>();
+        health = enemyStatus.health;
     }
 
     public void Update()
