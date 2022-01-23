@@ -3,33 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
-    [SerializeField] Transform playerCameraPov;
 
-    [SerializeField] float mouseSensitivity = 3.5f;
-    [SerializeField] [Range(0, 0.5f)] float mouseSmoothing = 0.02f;
     [SerializeField] bool CursorCentered = true;
 
     [SerializeField] float walkSpeed = 5.0f;
+
     [SerializeField] float runningSpeed = 20.0f;
 
-
     [SerializeField] [Range(0, 0.5f)] float moveSmoothing = 0.35f;
+
     [SerializeField] float gravity = -10.0f;
+
     [SerializeField] float velocityY;
+
     [SerializeField] float jumpingSpeed;
 
-    float cameraAngle;
     CharacterController controller = null;
 
     Vector2 currentDirection = Vector2.zero;
+
     Vector2 currentDirectionVelocity = Vector2.zero;
-
-    Vector2 currentMouseDelta = Vector2.zero;
-    Vector2 currentMouseDeltaVelocity = Vector2.zero;
-
-
 
     void Start()
     {
@@ -44,27 +39,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        MouseLook();
         PlayerMovement();
     }
 
 
-    private void MouseLook()
-    {
-        Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothing);
-
-        cameraAngle -= currentMouseDelta.y * mouseSensitivity;
-
-        cameraAngle = Mathf.Clamp(cameraAngle, -90.0f, 90.0f);
-
-        playerCameraPov.localEulerAngles = Vector3.right * cameraAngle;
-
-        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
-    }
     private void PlayerMovement()
     {
+
+
         float speed = walkSpeed;
 
         if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift) && controller.isGrounded)

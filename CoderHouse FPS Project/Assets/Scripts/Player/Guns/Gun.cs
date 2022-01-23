@@ -35,6 +35,7 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual private void Shoot()
     {
+        
         muzzeFlash.Play();
 
         RaycastHit hit;
