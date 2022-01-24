@@ -434,10 +434,8 @@ GameObject:
   - component: {fileID: 6225639160820000077}
   - component: {fileID: 508762159506463409}
   - component: {fileID: 508762159506463435}
-  - component: {fileID: 508762159506463413}
   - component: {fileID: 508762159506463414}
   - component: {fileID: 508762159506463415}
-  - component: {fileID: 508762159506463410}
   - component: {fileID: 3788201301294702581}
   m_Layer: 0
   m_Name: Robot_Red
@@ -514,38 +512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c580f268d93738a4b9ce3d551e5c8d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &508762159506463413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850641211984340365}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8ac8ef9e2c76e49a03ac219bcf8133, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 512
-  WhatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  enemyHealth: 100
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 10
-  timeBetweenAttacks: 2
-  damage: 20
-  projectile: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4, type: 3}
-  spawnBullet: {fileID: 3755451351992446299}
-  sightRange: 20
-  attackRange: 20
-  animAttackRange: 0
-  playerInSightRange: 0
-  playerInAttackRange: 0
 --- !u!195 &508762159506463414
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -580,21 +546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c580f268d93738a4b9ce3d551e5c8d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &508762159506463410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850641211984340365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c72e98114fdba94b9b99e4aec142401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 0
-  desiredVelocity: 0
-  path: 0
 --- !u!114 &3788201301294702581
 MonoBehaviour:
   m_ObjectHideFlags: 0

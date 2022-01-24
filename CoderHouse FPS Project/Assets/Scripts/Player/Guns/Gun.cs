@@ -16,17 +16,28 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected GameObject impactEffect;
 
     [SerializeField] float nextTimeToFire = 0f;
-
-    public LayerMask whatIsEnemy;
+    public bool crateOpen;
+    public LayerMask whatIsEnemy, whatIsCrate;
+    public int id;
 
 
     // Update is called once per frame
+
+    public void Start()
+    {
+        GameEvents.current.onCrateOpen += OnCrateOpen;
+    }
     protected virtual void Update()
     {
         if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            OnCrateOpen(id);
         }
 
 
@@ -58,6 +69,22 @@ public abstract class Gun : MonoBehaviour
             GameObject impactGameObject = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
 
             Destroy(impactGameObject, 0.3f);
+        }
+    }
+
+    void OnCrateOpen(int id)
+    {
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range, whatIsCrate))
+            {
+                crateOpen = true;
+                Debug.Log(hit.transform.name);
+
+                LootChestOpen openChest = hit.transform.GetComponent<LootChestOpen>();
+                openChest.OnCrateOpen(id);
+
+            }
         }
     }
 }

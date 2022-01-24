@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemyMelee
   m_EditorClassIdentifier: 
   health: 200
-  damage: 10
+  damage: 1

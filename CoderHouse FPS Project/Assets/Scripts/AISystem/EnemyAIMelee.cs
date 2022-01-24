@@ -72,7 +72,7 @@ public class EnemyAIMelee : MonoBehaviour
                 {
 
                     Patrolling();
-                    Debug.Log("Patrolling");
+                    //Debug.Log("Patrolling");
                     return;
 
                 }
@@ -81,7 +81,7 @@ public class EnemyAIMelee : MonoBehaviour
                 {
 
                     ChasePlayer();
-                    Debug.Log("Chasing Player");
+                   // Debug.Log("Chasing Player");
                     return;
 
                 } 
@@ -90,7 +90,7 @@ public class EnemyAIMelee : MonoBehaviour
 
                 {
                     AttackPlayer();
-                    Debug.Log("Atacking Player");
+                   // Debug.Log("Atacking Player");
                     _animator.SetTrigger("attack");
                     return;
 
