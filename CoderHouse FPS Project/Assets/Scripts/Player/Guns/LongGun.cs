@@ -22,5 +22,10 @@ public class LongGun : Gun
                 recoil.Recoilfiring(recoilX, recoilY, recoilZ);
             }
         }
+        // Method to call Loot chests interactions
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            base.OnCrateOpen();
+        }
     }
 }

@@ -82,7 +82,7 @@ public abstract class Gun : MonoBehaviour
         }
     }
 
-    void OnCrateOpen()
+    protected virtual void OnCrateOpen()
     {
         {
             RaycastHit hit;
