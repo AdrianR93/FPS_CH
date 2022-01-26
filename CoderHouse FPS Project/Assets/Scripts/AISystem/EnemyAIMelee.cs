@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyAIMelee : MonoBehaviour
 {
+    public EnemyStatus enemyStatus;
+
     public NavMeshAgent agent;
 
     public Transform player;
@@ -13,8 +15,7 @@ public class EnemyAIMelee : MonoBehaviour
 
     Animator _animator;
 
-    // Enemy Stats
-   // [SerializeField] private float health = 100;
+
     private bool isEnemyDead;
 
     // Patrolling
@@ -26,7 +27,7 @@ public class EnemyAIMelee : MonoBehaviour
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public float damage = 10;
+    public float damage;
 
     // States
     public float sightRange, attackRange, animAttackRange;
@@ -48,7 +49,9 @@ public class EnemyAIMelee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         _animator = GetComponent<Animator>();
+        damage = enemyStatus.damage;
 
     }
 
@@ -69,7 +72,7 @@ public class EnemyAIMelee : MonoBehaviour
                 {
 
                     Patrolling();
-                    Debug.Log("Patrolling");
+                    //Debug.Log("Patrolling");
                     return;
 
                 }
@@ -78,7 +81,7 @@ public class EnemyAIMelee : MonoBehaviour
                 {
 
                     ChasePlayer();
-                    Debug.Log("Chasing Player");
+                   // Debug.Log("Chasing Player");
                     return;
 
                 } 
@@ -87,7 +90,7 @@ public class EnemyAIMelee : MonoBehaviour
 
                 {
                     AttackPlayer();
-                    Debug.Log("Atacking Player");
+                   // Debug.Log("Atacking Player");
                     _animator.SetTrigger("attack");
                     return;
 
