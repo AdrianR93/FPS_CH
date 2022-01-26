@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameEvents : MonoBehaviour
 {
     public static GameEvents current;
+    
 
     private void Awake()
     {
@@ -31,12 +32,12 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action<int> onCrateOpen;
-    public void CrateOpen(int id)
+    public event Action onCrateOpen;
+    public void CrateOpen()
     {
         if (onCrateOpen !=null)
         {
-            onCrateOpen(id);
+            onCrateOpen();
         }
     }
 

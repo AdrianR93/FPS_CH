@@ -10,6 +10,7 @@ public abstract class Gun : MonoBehaviour
 
     [SerializeField] protected float damage = 10f;
     private float range = 100f;
+    private float interactableRange = 2;
     [SerializeField] protected float bulletForce = 100;
     [SerializeField] protected float fireRate = 20f;
 
@@ -45,7 +46,7 @@ public abstract class Gun : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            OnCrateOpen(id);
+            OnCrateOpen();
         }
 
 
@@ -81,17 +82,17 @@ public abstract class Gun : MonoBehaviour
         }
     }
 
-    void OnCrateOpen(int id)
+    void OnCrateOpen()
     {
         {
             RaycastHit hit;
-            if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range, whatIsCrate))
+            if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, interactableRange, whatIsCrate))
             {
                 crateOpen = true;
                 Debug.Log(hit.transform.name);
 
                 LootChestOpen openChest = hit.transform.GetComponent<LootChestOpen>();
-                openChest.OnCrateOpen(id);
+                openChest.OnCrateOpen();
 
             }
         }

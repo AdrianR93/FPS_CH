@@ -15,9 +15,9 @@ public class LootChestOpen : MonoBehaviour
 
     }
 
-    public void OnCrateOpen(int id)
+    public void OnCrateOpen()
     {
-        if (id == this.id)
+        //if (id == this.id)
         {
             if (!crateOpen)
             {
