@@ -12504,9 +12504,9 @@ MonoBehaviour:
   walkSpeed: 18
   runningSpeed: 29
   moveSmoothing: 0.35
-  gravity: -20
+  gravity: -80
   velocityY: 0
-  jumpingSpeed: 10
+  jumpingSpeed: 27
 --- !u!1 &5398609950705534169
 GameObject:
   m_ObjectHideFlags: 0
