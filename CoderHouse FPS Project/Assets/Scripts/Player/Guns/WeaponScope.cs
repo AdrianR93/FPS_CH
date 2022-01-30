@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponScope : MonoBehaviour
@@ -8,6 +7,16 @@ public class WeaponScope : MonoBehaviour
 
     private bool isScoped = false;
 
+    [SerializeField] GameObject weaponCamera;
+
+    [SerializeField] Camera mainCamera;
+
+    [SerializeField] private GameObject scopeOverlay;
+
+    float scopedFOV = 15f;
+
+    float normalFOV;
+
     // Update is called once per frame
     void Update()
     {
@@ -15,6 +24,34 @@ public class WeaponScope : MonoBehaviour
         {
             isScoped = !isScoped;
             animator.SetBool("Scoped", isScoped);
+
+            if (isScoped)
+            {
+                StartCoroutine(ScopeOn());
+            }
+            else
+            {
+                ScopeOff();
+            }
         }
+    }
+
+    IEnumerator ScopeOn()
+    {
+        yield return new WaitForSeconds(.15f);
+
+        scopeOverlay.SetActive(true);
+        weaponCamera.SetActive(false);
+
+        normalFOV = mainCamera.fieldOfView;
+        mainCamera.fieldOfView = scopedFOV;
+    }
+
+    void ScopeOff()
+    {
+        scopeOverlay.SetActive(false);
+        weaponCamera.SetActive(true);
+
+        mainCamera.fieldOfView = normalFOV;
     }
 }
