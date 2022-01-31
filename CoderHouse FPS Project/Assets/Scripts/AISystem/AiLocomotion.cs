@@ -20,7 +20,7 @@ public class AiLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Target.isEnemyDead == true)
+        if (Target.isEnemyDead == false)
         {
             // Script for blend tree 
             if (agent.hasPath)
@@ -33,7 +33,6 @@ public class AiLocomotion : MonoBehaviour
                 animator.SetFloat("Speed", 0);
             }
         }
-    
-    }
+        }
 
 }

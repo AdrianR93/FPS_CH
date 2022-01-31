@@ -7,24 +7,29 @@ public class Target : MonoBehaviour
     public float health;
     Animator _animator;
     public static bool isEnemyDead;
+    public bool pointsToAdd;
 
     public void Start()
     {
+        isEnemyDead = false;
         _animator = GetComponent<Animator>();
         health = enemyStatus.health;
     }
 
     public void Update()
     {
+
     }
 
     public void TakeDamage (float amount)
     {
-        health -= amount;
-        if (health <= 0f)
-        {
-            Die();
-        }
+        if (isEnemyDead == false) 
+            health -= amount;
+            if (health <= 0f)
+            {
+                Die();
+                AddScore();
+            }
 
     }
 
@@ -33,5 +38,15 @@ public class Target : MonoBehaviour
         isEnemyDead = true;
         _animator.SetTrigger("dead");
         Destroy(gameObject, 5f);
+        
+    }
+
+    private void AddScore()
+    {
+        if (isEnemyDead == true)
+        {
+            GameManager.instance.AddPoints();
+            
+        }
     }
 }
