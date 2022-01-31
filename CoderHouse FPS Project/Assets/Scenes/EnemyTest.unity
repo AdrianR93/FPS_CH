@@ -9353,7 +9353,7 @@ Transform:
   - {fileID: 1129263096}
   - {fileID: 2110404733}
   m_Father: {fileID: 1408981202}
-  m_RootOrder: 17
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1794863476 stripped
 Transform:
@@ -9721,6 +9721,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 852010413}
     m_Modifications:
+    - target: {fileID: 1629239547, guid: f45228974f4396348b2b77c472c2bc22, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5930130867010533493, guid: f45228974f4396348b2b77c472c2bc22,
         type: 3}
       propertyPath: id
