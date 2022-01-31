@@ -73,7 +73,7 @@ public class EnemyAIMelee : MonoBehaviour
 
                     Patrolling();
                     //Debug.Log("Patrolling");
-                    return;
+                    
 
                 }
 
@@ -82,7 +82,7 @@ public class EnemyAIMelee : MonoBehaviour
 
                     ChasePlayer();
                    // Debug.Log("Chasing Player");
-                    return;
+                    
 
                 } 
     
@@ -92,10 +92,9 @@ public class EnemyAIMelee : MonoBehaviour
                     AttackPlayer();
                    // Debug.Log("Atacking Player");
                     _animator.SetTrigger("attack");
-                    return;
+                    
 
                 }
-
             }
         }
 
@@ -147,20 +146,21 @@ public class EnemyAIMelee : MonoBehaviour
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
-
-
         if (!alreadyAttacked)
         {
             //AttackCodehere
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
 
-        if (isAttacking)
+        if (isAttacking) 
         {
             _animator.SetTrigger("attack");
+            return;
         }
+
     }
 
     private void ResetAttack()

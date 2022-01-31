@@ -11,6 +11,9 @@ public class AiAgent : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public AiAgentConfig config;
     public Transform playerTransform;
+    public AudioSource audioSource;
+    public AudioClip intruderAlert;
+
 
 
     // Start is called before the first frame update
