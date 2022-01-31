@@ -6,18 +6,15 @@ using UnityEngine.AI;
 public class AiAttackPlayer : MonoBehaviour
 {
 
-    public NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
 
-    public Transform player;
+    private Transform player;
 
     public Transform spawnBullet;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
     public static int damage = 20;
-
-    public float health;
-
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -42,10 +39,10 @@ public class AiAttackPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       /* if (spawnBullet == null)
-        {
-            spawnBullet = GameObject.FindGameObjectWithTag("RedRobotMuzzle").transform;
-        } */
+        /* if (spawnBullet == null)
+         {
+             spawnBullet = GameObject.FindGameObjectWithTag("RedRobotMuzzle").transform;
+         } */
 
         _animator = GetComponent<Animator>();
     }
@@ -53,7 +50,7 @@ public class AiAttackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Target.isEnemyDead == true) 
+        if (!Target.isEnemyDead == true)
         {
             //Check for sight and attack range
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);

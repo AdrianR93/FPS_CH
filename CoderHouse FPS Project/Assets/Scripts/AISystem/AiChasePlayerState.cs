@@ -22,8 +22,7 @@ public class AiChasePlayerState : AiState
 
     public void Update(AiAgent agent)
     {
-        if (Target.isEnemyDead == false)
-        {        
+        //if (Target.isEnemyDead == false)     
             if (!agent.enabled)
         {
             return;
@@ -45,7 +44,6 @@ public class AiChasePlayerState : AiState
                         agent.navMeshAgent.destination = playerTransform.position;
                     }
                 }
-            }
 
             timer = agent.config.maxTime;
         }
