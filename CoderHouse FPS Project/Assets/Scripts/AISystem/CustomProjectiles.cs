@@ -188,6 +188,7 @@ public class CustomProjectiles : MonoBehaviour
     /// check if a specific requirement is fullfilled and if so, call the function
     void Update()
     {
+        Delay();
         if (!activated) return;
 
         if (collisions >= maxCollisions && activated) Explode();
@@ -208,6 +209,7 @@ public class CustomProjectiles : MonoBehaviour
         if (timeBeforeDropping != 0) DropDown();
 
         if (useCustomGravity) CustomGravity();
+ 
     }
 
     ///Just to set the basic variables of the bullet/projectile
@@ -284,7 +286,7 @@ public class CustomProjectiles : MonoBehaviour
     }
     private void Delay()
     {
-        Destroy(gameObject);
+        Destroy(gameObject,1f);
     }
     private void OnCollisionEnter(Collision collision)
     {

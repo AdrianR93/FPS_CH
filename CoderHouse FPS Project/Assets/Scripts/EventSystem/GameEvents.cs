@@ -32,6 +32,17 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action<int> onElevatorEnter;
+    public void ElevatorTriggerEnter(int id)
+    {
+        if (onElevatorEnter != null)
+        {
+            onElevatorEnter(id);
+        }
+
+    }
+
+
     public event Action onCrateOpen;
     public void CrateOpen()
     {

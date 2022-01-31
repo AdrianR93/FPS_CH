@@ -318,7 +318,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -350,10 +350,10 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 1
-  damage: 10
+  damage: 1
   sightRange: 20
-  attackRange: 1.5
-  animAttackRange: 1.5
+  attackRange: 2
+  animAttackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
   isAttacking: 0

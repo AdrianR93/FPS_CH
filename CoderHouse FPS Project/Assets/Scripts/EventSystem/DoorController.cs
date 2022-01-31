@@ -5,6 +5,8 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     public int id;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip doorSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,9 @@ public class DoorController : MonoBehaviour
     {
         if(id == this.id)
         {
-            LeanTween.moveLocalY(gameObject, 0.5f, 1f).setEaseOutQuad();
+            LeanTween.moveLocalZ(gameObject, 0.5f, 1f).setEaseOutQuad();
+            audioSource.clip = doorSound;
+            audioSource.PlayOneShot(doorSound);
         }
     }
 
@@ -24,7 +28,10 @@ public class DoorController : MonoBehaviour
     {
         if (id == this.id)
         {
-            LeanTween.moveLocalY(gameObject, 0.1f, 1f).setEaseInQuad();
+            LeanTween.moveLocalZ(gameObject, 1.2f, 1f).setEaseInQuad();
+            audioSource.clip = doorSound;
+            audioSource.PlayOneShot(doorSound);
+            Debug.Log($"playing {doorSound}");
         }
     }
 
