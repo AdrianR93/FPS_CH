@@ -2613,7 +2613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   player: {fileID: 0}
-  spawnBullet: {fileID: 0}
+  spawnBullet: {fileID: 7975392673590950765}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 512

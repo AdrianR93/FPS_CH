@@ -2583,6 +2583,8 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   config: {fileID: 11400000, guid: a4b0f58c25605f247b2df2723209fefd, type: 2}
   playerTransform: {fileID: 0}
+  audioSource: {fileID: 8387123438219966191}
+  intruderAlert: {fileID: 8300000, guid: c9905d15743f3694ab79fb9c4dd5dca3, type: 3}
 --- !u!114 &7611423242871586125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2611,7 +2613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   player: {fileID: 0}
-  spawnBullet: {fileID: 0}
+  spawnBullet: {fileID: 7975392673590950765}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 512
