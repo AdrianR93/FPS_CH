@@ -11,6 +11,7 @@ public class Target : MonoBehaviour
 
     public void Start()
     {
+        pointsToAdd = false;
         isEnemyDead = false;
         _animator = GetComponent<Animator>();
         health = enemyStatus.health;
@@ -23,12 +24,11 @@ public class Target : MonoBehaviour
 
     public void TakeDamage (float amount)
     {
-        if (isEnemyDead == false) 
+
             health -= amount;
             if (health <= 0f)
             {
                 Die();
-                AddScore();
             }
 
     }
@@ -38,14 +38,17 @@ public class Target : MonoBehaviour
         isEnemyDead = true;
         _animator.SetTrigger("dead");
         Destroy(gameObject, 5f);
+        AddScore();
+
         
     }
 
     private void AddScore()
     {
-        if (isEnemyDead == true)
+        if (pointsToAdd == false)
         {
             GameManager.instance.AddPoints();
+            pointsToAdd = true;
             
         }
     }
