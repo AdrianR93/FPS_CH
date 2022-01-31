@@ -10026,7 +10026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &504974285436931590
 GameObject:
   m_ObjectHideFlags: 0
@@ -12891,7 +12891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &5399683411333756941
 GameObject:
   m_ObjectHideFlags: 0
@@ -13203,6 +13203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6470544052674053798}
+  weaponCamera: {fileID: 570104049}
+  mainCamera: {fileID: 5398609951384682155}
   scopeOverlay: {fileID: 723728945}
 --- !u!1001 &6562057338753718946
 PrefabInstance:
