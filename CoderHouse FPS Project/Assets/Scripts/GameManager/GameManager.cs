@@ -7,7 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Text pointsText;
+    public Text scoreText;
+    public Text highscoreText;
+    int score = 0;
+    int highscore = 0;
     public bool _playerIsDead;
     public Transform gameOver;
     public Transform player;
@@ -27,6 +30,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        scoreText.text = score.ToString() + " POINTS";
+        highscoreText.text = "Highscore: " + highscore.ToString() + " POINTS";
+    }
+
     public void AddScore(int pointsToAdd)
     {
 
@@ -41,6 +50,12 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
 
 
+    }
+
+    public void AddPoints()
+    {
+        score += 10;
+        scoreText.text = score.ToString() + " POINTS";
     }
 
     public void QuitButton()

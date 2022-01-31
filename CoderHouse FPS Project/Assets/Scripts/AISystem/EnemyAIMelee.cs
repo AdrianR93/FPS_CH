@@ -65,7 +65,7 @@ public class EnemyAIMelee : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
 
         gameObject.GetComponent<Target>();
-        if (!Target.isEnemyDead == true)
+        if (Target.isEnemyDead == false)
         {
             {
                 if (!playerInSightRange && !playerInAttackRange)

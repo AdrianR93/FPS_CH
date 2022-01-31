@@ -42,10 +42,10 @@ public class AiAttackPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (spawnBullet == null)
+       /* if (spawnBullet == null)
         {
             spawnBullet = GameObject.FindGameObjectWithTag("RedRobotMuzzle").transform;
-        }
+        } */
 
         _animator = GetComponent<Animator>();
     }
