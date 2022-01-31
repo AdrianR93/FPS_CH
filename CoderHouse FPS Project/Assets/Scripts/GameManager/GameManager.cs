@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool _playerIsDead;
     public Transform gameOver;
     public Transform player;
+    [SerializeField] private Transform crosshair;
 
 
     private void Awake()
@@ -34,10 +35,10 @@ public class GameManager : MonoBehaviour
     public void GameOverScreen()
     {
         gameOver.gameObject.SetActive(true);
+        crosshair.gameObject.SetActive(false);
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-
 
 
     }

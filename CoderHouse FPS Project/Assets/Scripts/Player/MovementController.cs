@@ -69,6 +69,7 @@ public class MovementController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
             velocityY = jumpingSpeed;
+
         }
 
         velocityY += gravity * Time.deltaTime;

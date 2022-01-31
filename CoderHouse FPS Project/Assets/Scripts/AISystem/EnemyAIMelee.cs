@@ -158,7 +158,7 @@ public class EnemyAIMelee : MonoBehaviour
         if (isAttacking) 
         {
             _animator.SetTrigger("attack");
-            return;
+            
         }
 
     }
