@@ -9,11 +9,12 @@ TagManager:
   - Chest
   - Bullet
   - RedRobotMuzzle
+  - Door
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - StartRoom
   - Water
   - UI
   - Enemy
