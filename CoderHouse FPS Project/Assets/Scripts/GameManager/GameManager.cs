@@ -56,6 +56,12 @@ public class GameManager : MonoBehaviour
     {
         score += 10;
         scoreText.text = score.ToString() + " POINTS";
+
+        if (score >= 1000)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        }
     }
 
     public void QuitButton()

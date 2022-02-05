@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 9d41c32f719dc4b47bd0cbe39860bdae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,64 +233,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f725f49de760cf2489bce867489fd968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activated: 0
-  rb: {fileID: 7390206414612337459}
-  explosion: {fileID: 4999360924277247100, guid: d8f5071190b4d5941b88720288669b8d,
-    type: 3}
-  whatIsEnemies:
-    serializedVersion: 2
-    m_Bits: 4096
-  bounciness: 0.6
-  useGravity: 1
-  explosionDamage: 150
-  explosionRange: 5
-  explosionForce: 0
-  maxCollisions: 1
-  maxLifetime: 1
-  explodeOnTouch: 1
-  secondBullet: {fileID: 0}
-  sb_amount: 0
-  sb_forwardForce: 0
-  sb_upwardForce: 0
-  sb_randomForce: 20
-  scaleGrowingSpeed: 0
-  damageGrowingSpeed: 0
-  maxScale: 0
-  maxDamage: 0
-  stickToObjects: 0
-  checkForEnemies: 0
-  checkRange: 0
-  objectToSpawn: {fileID: 0}
-  timeBetweenSpawns: 0
-  preferredSpawnPoints: []
-  maxSpawnAmount: 0
-  nameOfObjectToTp: 
-  tpOnFirstCollision: 0
-  tpOnEveryCollision: 0
-  tpOnExplosion: 0
-  switchPlaces: 0
-  timeBeforeVanish: 0
-  timeBetweenVanishAndAppear: 0
-  dontAppearAgain: 0
-  canStillExplodeWhenVanished: 0
-  canTravelThroughtWallsWhileVanished: 0
-  repeat: 0
-  useSmoothAutoAim: 1
-  useInsaneAutoAim: 0
-  autoAimIntensity: 2
-  autoAimDetectRange: 0
-  autoAimStopRange: 0
-  timeBeforeDropping: 0
-  waitMidAir: 0
-  dropForce: 0
-  explodeDirectlyAfterDrop: 1
-  smokeEffect: {fileID: 0}
-  useCustomGravity: 0
-  gravityDirection: {x: 0, y: 0, z: 0}
-  gravityStrength: 0
-  playerObjectName: 
-  dashForce: 0
-  dashDelay: 0.2
-  chargeTime: 0
-  chargedVelocityMultiplier: 0
-  alreadyExploded: 0
