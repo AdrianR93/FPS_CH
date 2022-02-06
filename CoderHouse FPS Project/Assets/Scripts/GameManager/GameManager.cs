@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     int highscore = 0;
     public bool _playerIsDead;
     public Transform gameOver;
+    public Transform BossRenegade;
     public Transform player;
     [SerializeField] private Transform crosshair;
 
@@ -57,11 +58,13 @@ public class GameManager : MonoBehaviour
         score += 10;
         scoreText.text = score.ToString() + " POINTS";
 
-        if (score >= 1000)
+        if (score >= 50)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            SpawnBossRenegade();
 
         }
+
+
     }
 
     public void QuitButton()
@@ -69,7 +72,21 @@ public class GameManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
     }
 
+    public void SpawnBossRenegade()
+    {
+        BossRenegade.gameObject.SetActive(true);
+        Vector3 playerPos = player.transform.position;
+        Vector3 playerDirection = player.transform.forward;
+        Quaternion playerRotation = player.transform.rotation;
+        float spawnDistance = 10;
+
+        Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
+
+        Instantiate(BossRenegade, spawnPos, playerRotation);
+    }
+
 
 }
+
 
 
