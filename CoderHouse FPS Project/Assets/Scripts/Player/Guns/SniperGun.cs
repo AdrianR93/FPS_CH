@@ -11,14 +11,11 @@ public class SniperGun : Gun
     {
         if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
         {
+            shootingAnimator.SetTrigger("SniperShoot");
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
             recoil.Recoilfiring(recoilX, recoilY, recoilZ);
         }
-        // Method to call Loot chests interactions
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            base.OnCrateOpen();
-        }
+
     }
 }

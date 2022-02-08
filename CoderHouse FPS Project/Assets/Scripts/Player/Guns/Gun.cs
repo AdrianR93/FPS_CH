@@ -7,10 +7,10 @@ public abstract class Gun : MonoBehaviour
 {
     protected Recoil recoil;
 
+    [SerializeField] protected Animator shootingAnimator;
 
     [SerializeField] protected float damage = 10f;
     private float range = 100f;
-    private float interactableRange = 2;
     [SerializeField] protected float bulletForce = 100;
     [SerializeField] protected float fireRate = 20f;
 
@@ -20,10 +20,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected GameObject impactEffect;
 
     [SerializeField] protected float nextTimeToFire = 0f;
-    public bool crateOpen;
-    public LayerMask whatIsEnemy, whatIsCrate;
-    public int id;
-
+    public LayerMask whatIsEnemy;
 
     //Recoil Stats
     [SerializeField] protected float recoilX;
@@ -33,8 +30,8 @@ public abstract class Gun : MonoBehaviour
     private void Start()
     {
         recoil = FindObjectOfType<Recoil>();
-        GameEvents.current.onCrateOpen += OnCrateOpen;
     }
+
     protected virtual void Update()
     {
         if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
@@ -44,18 +41,13 @@ public abstract class Gun : MonoBehaviour
             recoil.Recoilfiring(recoilX, recoilY, recoilZ);
         }
 
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            OnCrateOpen();
-        }
-
 
 
     }
 
     protected virtual private void Shoot()
     {
-        
+
         muzzeFlash.Play();
 
         RaycastHit hit;
@@ -82,19 +74,4 @@ public abstract class Gun : MonoBehaviour
         }
     }
 
-    protected virtual void OnCrateOpen()
-    {
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, interactableRange, whatIsCrate))
-            {
-                crateOpen = true;
-                Debug.Log(hit.transform.name);
-
-                LootChestOpen openChest = hit.transform.GetComponent<LootChestOpen>();
-                openChest.OnCrateOpen();
-
-            }
-        }
-    }
 }

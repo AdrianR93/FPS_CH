@@ -5,16 +5,14 @@ using UnityEngine;
 public class LongGun : Gun
 {
     [SerializeField] int numberOfBullets = 2;
-    private void Start()
-    {
-        recoil = FindObjectOfType<Recoil>();
-    }
+
 
     // Update is called once per frame
     protected override void Update()
     {
         if (Input.GetButton("Fire1") && Time.time >= base.nextTimeToFire)
         {
+            shootingAnimator.SetTrigger("LongShoot");
             nextTimeToFire = Time.time + 1f / fireRate;
             for (int i = 0; i < numberOfBullets - 1; i++)
             {
@@ -22,10 +20,6 @@ public class LongGun : Gun
                 recoil.Recoilfiring(recoilX, recoilY, recoilZ);
             }
         }
-        // Method to call Loot chests interactions
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            base.OnCrateOpen();
-        }
+
     }
 }
