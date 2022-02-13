@@ -39,10 +39,7 @@ public class AiAttackPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /* if (spawnBullet == null)
-         {
-             spawnBullet = GameObject.FindGameObjectWithTag("RedRobotMuzzle").transform;
-         } */
+
 
         _animator = GetComponent<Animator>();
     }
@@ -50,7 +47,6 @@ public class AiAttackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Target.isEnemyDead == true)
         {
             //Check for sight and attack range
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -89,13 +85,6 @@ public class AiAttackPlayer : MonoBehaviour
     {
         alreadyAttacked = false;
     }
-
-    /*private void BulletOut()
-    {
-        Rigidbody rb = Instantiate(projectile, spawnBullet.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        rb.AddForce(-transform.up * 4f, ForceMode.Impulse);
-    }*/
 
     IEnumerator Bullet()
     {

@@ -6,7 +6,7 @@ public class Target : MonoBehaviour
     public EnemyStatus enemyStatus;
     public float health;
     Animator _animator;
-    public static bool isEnemyDead;
+    public bool isEnemyDead;
     public bool pointsToAdd;
 
     public void Start()
