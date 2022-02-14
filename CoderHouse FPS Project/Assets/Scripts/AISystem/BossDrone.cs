@@ -44,8 +44,6 @@ public class BossDrone : MonoBehaviour
     public float degreesPerSecond = 15.0f;
     public float amplitude = 0.5f;
     public float frequency = 1f;
-    Vector3 posOffset = new Vector3();
-    Vector3 tempPos = new Vector3();
 
 
     private void Awake()
@@ -62,46 +60,49 @@ public class BossDrone : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         damage = enemyStatus.damage;
-        posOffset = transform.position;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        // Check for sight and Attack Range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
-
-        gameObject.GetComponent<Target>();
+        Target locomotion = gameObject.GetComponent<Target>();
+        if (locomotion.isEnemyDead == true)
         {
+
+            // Check for sight and Attack Range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
+
+            gameObject.GetComponent<Target>();
             {
-                if (!playerInSightRange && !playerInAttackRange)
                 {
+                    if (!playerInSightRange && !playerInAttackRange)
+                    {
 
-                    Patrolling();
-                    //Debug.Log("Patrolling");
-
-
-                }
-
-                if (playerInSightRange && !playerInAttackRange)
-                {
-
-                    ChasePlayer();
-                    // Debug.Log("Chasing Player");
+                        Patrolling();
+                        //Debug.Log("Patrolling");
 
 
-                }
+                    }
 
-                if (playerInSightRange && playerInAttackRange)
+                    if (playerInSightRange && !playerInAttackRange)
+                    {
 
-                {
-                    AttackPlayer();
-                    // Debug.Log("Atacking Player");
+                        ChasePlayer();
+                        // Debug.Log("Chasing Player");
 
 
+                    }
+
+                    if (playerInSightRange && playerInAttackRange)
+
+                    {
+                        AttackPlayer();
+                        // Debug.Log("Atacking Player");
+
+
+                    }
                 }
             }
         }

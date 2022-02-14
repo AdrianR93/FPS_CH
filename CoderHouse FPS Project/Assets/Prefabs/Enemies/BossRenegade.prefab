@@ -2737,8 +2737,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5494167021249404710}
-  m_LocalRotation: {x: 0.05030424, y: 0.6618906, z: 0.03745742, w: 0.7469721}
-  m_LocalPosition: {x: 0.315, y: 0.005, z: 0.118}
+  m_LocalRotation: {x: 0.18301274, y: 0.6830127, z: -0.18301274, w: 0.6830127}
+  m_LocalPosition: {x: 0.32, y: 0.05, z: 0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1810230909231361154}
@@ -2757,7 +2757,7 @@ Transform:
   - {fileID: 2671799358141031548}
   m_Father: {fileID: 4552012573707113729}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 30, y: 90, z: 0}
 --- !u!1 &5611883732947966753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,6 +3625,8 @@ GameObject:
   - component: {fileID: 1240354922}
   - component: {fileID: 1240354925}
   - component: {fileID: 1240354926}
+  - component: {fileID: 734188760623673184}
+  - component: {fileID: 1240354923}
   m_Layer: 0
   m_Name: BossRenegade
   m_TagString: Untagged
@@ -3827,6 +3829,59 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &734188760623673184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479046005994492933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3ed95c1d77e754b89184f7e876a3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStatus: {fileID: 11400000, guid: 275d6b16c1dfd064e8f687e15cf0a552, type: 2}
+  projectile: {fileID: 7390206414612337457, guid: 0a32c69b9aa69f248974d14b821f538c,
+    type: 3}
+  spawnBullet: {fileID: 2671799358141031548}
+  agent: {fileID: 1240354926}
+  player: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 512
+  WhatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 10
+  timeBetweenAttacks: 1.5
+  damage: 1
+  sightRange: 20
+  attackRange: 5
+  animAttackRange: 0
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  isAttacking: 0
+  degreesPerSecond: 0
+  amplitude: 0
+  frequency: 0
+--- !u!114 &1240354923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479046005994492933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a05bf6d1bada134e9552a142d101488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStatus: {fileID: 11400000, guid: 275d6b16c1dfd064e8f687e15cf0a552, type: 2}
+  health: 100
+  isEnemyDead: 0
+  pointsToAdd: 0
 --- !u!1 &7510202232497783824
 GameObject:
   m_ObjectHideFlags: 0

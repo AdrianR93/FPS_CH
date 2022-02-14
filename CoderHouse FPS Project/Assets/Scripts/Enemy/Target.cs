@@ -26,6 +26,7 @@ public class Target : MonoBehaviour
     {
 
             health -= amount;
+            Debug.Log($"Enemy hit for {amount}, current Enemy Health is {health}");
             if (health <= 0f)
             {
                 Die();

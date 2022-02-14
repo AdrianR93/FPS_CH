@@ -58,15 +58,13 @@ public class EnemyAIMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-        // Check for sight and Attack Range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
-
-        gameObject.GetComponent<Target>();
+        Target locomotion = gameObject.GetComponent<Target>();
+        if (!locomotion.isEnemyDead)
         {
-            {
+            // Check for sight and Attack Range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
+
                 if (!playerInSightRange && !playerInAttackRange)
                 {
 
@@ -97,7 +95,6 @@ public class EnemyAIMelee : MonoBehaviour
             }
         }
 
-    }
     private void Patrolling()
     {
         if (!walkpointSet)
@@ -170,30 +167,17 @@ public class EnemyAIMelee : MonoBehaviour
     // Attack method to player
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
-
-        var playerLifeController = collision.gameObject.GetComponent<PlayerLifeController>();
-        if (playerLifeController != null)
-            playerLifeController.TakeDamage(damage);
-
-
-    }
-    // Trigger to set death animation
-  /*  public void TakeDamage(float amount)
-    {
-        health -= amount;
-        if (health <= 0f)
+        Target locomotion = gameObject.GetComponent<Target>();
+        if (locomotion.isEnemyDead != true)
         {
-            Die();
+            if (!collision.gameObject.CompareTag("Player")) return;
+
+            var playerLifeController = collision.gameObject.GetComponent<PlayerLifeController>();
+            if (playerLifeController != null)
+                playerLifeController.TakeDamage(damage);
         }
 
+
     }
-    private void Die()
-    {
-        isEnemyDead = true;
-        _animator.SetTrigger("dead");
-        Destroy(gameObject, 5f);
-        return;
-    }*/
 }
 

@@ -47,6 +47,8 @@ public class AiAttackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Target locomotion = gameObject.GetComponent<Target>();
+        if (locomotion.isEnemyDead != true)
         {
             //Check for sight and attack range
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -71,7 +73,7 @@ public class AiAttackPlayer : MonoBehaviour
         if (!alreadyAttacked)
         {
             _animator.SetTrigger("Shoot");
-            StartCoroutine(Bullet());
+           //StartCoroutine(Bullet());
 
 
             ///End of attack code
@@ -86,12 +88,10 @@ public class AiAttackPlayer : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    IEnumerator Bullet()
+    private void  Bullet()
     {
-        yield return new WaitForSeconds(0.3f);
         Rigidbody rb = Instantiate(projectile, spawnBullet.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
         rb.AddForce(-transform.up * 4f, ForceMode.Impulse);
-        yield return new WaitForSeconds(0.3f);
     }
 }
