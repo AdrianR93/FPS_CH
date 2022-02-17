@@ -32,6 +32,7 @@ public class Target : MonoBehaviour
                 Die();
             }
 
+
     }
 
     private void Die()
@@ -40,6 +41,7 @@ public class Target : MonoBehaviour
         _animator.SetTrigger("dead");
         Destroy(gameObject, 5f);
         AddScore();
+        RenegadeBoss.shieldHeal = false;
 
         
     }
