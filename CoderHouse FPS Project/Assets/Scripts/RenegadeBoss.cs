@@ -10,6 +10,7 @@ public class RenegadeBoss : MonoBehaviour
     public EnemyStatus enemyStatus;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform spawnBullet;
+    [SerializeField] private Transform _drones;
     public float currentHealth;
     public float maxHealth = 1000;
     public NavMeshAgent agent;
@@ -49,6 +50,19 @@ public class RenegadeBoss : MonoBehaviour
     // bool to set trigger for animation
     public bool isAttacking;
 
+    //sounds
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip bossOver;
+
+    // Dissolve Shader Variables
+    private bool dissolved;
+    public int x;
+    Renderer rend;
+    public float dissolveSpeed = 1f;
+    private float maxValue;
+    private bool isShaderUp;
+    [SerializeField] private GameObject bodyShader;
+
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
@@ -59,14 +73,28 @@ public class RenegadeBoss : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        shieldHeal = false;
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+    {      
+        // Getting Components
         _animator = GetComponent<Animator>();
-        damage = enemyStatus.damage;
         agent = GetComponent<NavMeshAgent>();
+
+        // Declaring and Starting Variables
+        healthBar.SetMaxHealth(maxHealth);
+        currentHealth = maxHealth;
+        damage = enemyStatus.damage;
+
+
+        // Initiating bools
+        shieldHeal = false;
         alreadyDeployed = false;
+        isEnemyDead = false;
+
+        // Dissolve properties
+        maxValue = 1;
+        dissolved = true;
+        x = 0;
+        rend = bodyShader.GetComponent<Renderer>();
+        rend.enabled = true;
 
 
     }
@@ -74,127 +102,153 @@ public class RenegadeBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // Check for sight and Attack Range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
-        if (agent.hasPath)
-
+        if (dissolved == true)
         {
-            _animator.SetFloat("Speed", agent.velocity.magnitude);
-        }
-        else
-        {
-            _animator.SetFloat("Speed", 0);
+                    maxValue -= dissolveSpeed;
+                    rend.sharedMaterial.SetFloat("Dissolve", maxValue);
+
+                    if (maxValue <= 0.0f)
+                    {
+                        maxValue = 0f;
+                    }                    
         }
 
-         switch (_states)
-         {
-             case RenegadeStates.Idle:
-                 {
-                     if (!playerInSightRange && !playerInAttackRange)
-                     {
-                         agent.SetDestination(transform.position);
-                         Debug.Log("Boss idle!");
-                         if (currentHealth <= 800)
-                         {
-                             ForceField();
-                         }
-
-
-                     }
-
-                     if (playerInSightRange && !playerInAttackRange)
-                     {
-                         _states = RenegadeStates.Chasing;
-                     }
-
-                     if (currentHealth <= 800)
-                     {
-                         _states = RenegadeStates.ForceField;
-                     }
-                 }
-                 break;
-
-             case RenegadeStates.Chasing:
-                 {
-                     if (playerInSightRange && !playerInAttackRange)
-                     {
-
-                         ChasePlayer();
-                         Debug.Log("Chasing Player");
-
-                         if (currentHealth <= 800)
-                         {
-                             ForceField();
-                         }
-
-
-                     }
-                     if (playerInSightRange && playerInAttackRange)
-                     {
-                         _states = RenegadeStates.Shooting;
-                     }
-
-                 }
-                 break;
-
-             case RenegadeStates.Shooting:
-                 {
-                     if (playerInSightRange && playerInAttackRange)
-
-                     {
-                         AttackPlayer();
-                         //Debug.Log("Atacking Player");
-                         if (currentHealth <= 800)
-                         {
-                             ForceField();
-                         }
-                     }
-                     if (playerInSightRange && !playerInAttackRange)
-                     {
-                         _states = RenegadeStates.Chasing;
-                     }
-
-                     if (!playerInSightRange && !playerInAttackRange)
-                     {
-                         _states = RenegadeStates.Idle;
-                     }
-
-                     if (currentHealth <= 800)
-                     {
-                         ForceField();
-                     }
-                 }
-                 break;
-             case RenegadeStates.ForceField:
-                 {
-                     if (currentHealth <= 800)
-                     {
-                         ForceField();
-                     }
-
-                     if (currentHealth > 800)
-                     {
-                         _states = RenegadeStates.Chasing;
-                     }
-                 }
-                 break;
-         }
-
-        if (currentHealth <= 800.0)
+        if (!dissolved) 
         {
-            ForceField();
+                maxValue += dissolveSpeed;
+                rend.sharedMaterial.SetFloat("Dissolve", maxValue);
+
+                if (maxValue >= 1.0f)
+                {
+                    maxValue = 1.0f;
+                }
         }
 
-        if (shieldHeal == true)
+        if (!isEnemyDead)
         {
-            currentHealth += healing * (healSpeed * Time.deltaTime);
-            if (currentHealth > 1000)
+
+            // Check for sight and Attack Range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
+            if (agent.hasPath)
+
             {
-                currentHealth = maxHealth;
+                _animator.SetFloat("Speed", agent.velocity.magnitude);
+            }
+            else
+            {
+                _animator.SetFloat("Speed", 0);
+            }
+
+            switch (_states)
+            {
+                case RenegadeStates.Idle:
+                    {
+                        if (!playerInSightRange && !playerInAttackRange)
+                        {
+                            agent.SetDestination(transform.position);
+                            Debug.Log("Boss idle!");
+                            if (currentHealth <= 800)
+                            {
+                                ForceField();
+                            }
+
+
+                        }
+
+                        if (playerInSightRange && !playerInAttackRange)
+                        {
+                            _states = RenegadeStates.Chasing;
+                        }
+
+                        if (currentHealth <= 800)
+                        {
+                            _states = RenegadeStates.ForceField;
+                        }
+                    }
+                    break;
+
+                case RenegadeStates.Chasing:
+                    {
+                        if (playerInSightRange && !playerInAttackRange)
+                        {
+
+                            ChasePlayer();
+                            Debug.Log("Chasing Player");
+
+                            if (currentHealth <= 800)
+                            {
+                                ForceField();
+                            }
+
+
+                        }
+                        if (playerInSightRange && playerInAttackRange)
+                        {
+                            _states = RenegadeStates.Shooting;
+                        }
+
+                    }
+                    break;
+
+                case RenegadeStates.Shooting:
+                    {
+                        if (playerInSightRange && playerInAttackRange)
+
+                        {
+                            AttackPlayer();
+                            //Debug.Log("Atacking Player");
+                            if (currentHealth <= 800)
+                            {
+                                ForceField();
+                            }
+                        }
+                        if (playerInSightRange && !playerInAttackRange)
+                        {
+                            _states = RenegadeStates.Chasing;
+                        }
+
+                        if (!playerInSightRange && !playerInAttackRange)
+                        {
+                            _states = RenegadeStates.Idle;
+                        }
+
+                        if (currentHealth <= 800)
+                        {
+                            ForceField();
+                        }
+                    }
+                    break;
+                case RenegadeStates.ForceField:
+                    {
+                        if (currentHealth <= 800)
+                        {
+                            ForceField();
+                        }
+
+                        if (currentHealth > 800)
+                        {
+                            _states = RenegadeStates.Chasing;
+                        }
+                    }
+                    break;
+            }
+
+            if (currentHealth <= 800.0)
+            {
+                ForceField();
+            }
+
+            if (shieldHeal == true)
+            {
+                currentHealth += healing * (healSpeed * Time.deltaTime);
+                if (currentHealth > 1000)
+                {
+                    currentHealth = maxHealth;
+                }
             }
         }
+        
     }
     private void Patrolling()
     {
@@ -280,8 +334,10 @@ public class RenegadeBoss : MonoBehaviour
 
             _forceField.gameObject.SetActive(true);
             currentHealth += healing * (healSpeed * Time.deltaTime);
+            healthBar.SetHealth(currentHealth);
             alreadyDeployed = true;
             shieldHeal = true;
+            _drones.gameObject.SetActive(true);
             if (shieldHeal == true)
             {
                 agent.SetDestination(transform.position);
@@ -295,7 +351,7 @@ public class RenegadeBoss : MonoBehaviour
              }*/
         }    
 
-        Debug.Log("hello there");
+
     }
 
     public void TakeDamage(float amount)
@@ -309,7 +365,12 @@ public class RenegadeBoss : MonoBehaviour
         }
         if (currentHealth <= 0f)
         {
-            Die();
+            if (isEnemyDead == false)
+            {
+                Die();
+                isEnemyDead = true;
+
+            }
         }
 
 
@@ -320,11 +381,46 @@ public class RenegadeBoss : MonoBehaviour
     {
         isEnemyDead = true;
         _animator.SetTrigger("dead");
-        Destroy(gameObject, 5f);
+        audioSource.clip = bossOver;
+        audioSource.PlayOneShot(bossOver);
         AddScore();
-
+        dissolved = false;
+        Destroy(gameObject, 3f);
 
     }
+
+
+    private void NotDissolve()
+    {        
+        {
+            maxValue = 1;
+            maxValue -= dissolveSpeed;
+            rend.sharedMaterial.SetFloat("Dissolve", maxValue);
+
+            if (maxValue <= 0)
+            {
+                maxValue = 0;
+            }
+        }
+    }
+
+    private void Dissolve()
+    {
+        {
+            {
+                maxValue = 0;
+                maxValue += dissolveSpeed;
+                rend.sharedMaterial.SetFloat("Dissolve", maxValue);
+
+                if (maxValue >= 1)
+                {
+                    maxValue = 1;
+                }
+            }
+        }
+    }
+
+
 
     private void AddScore()
     {
@@ -335,6 +431,8 @@ public class RenegadeBoss : MonoBehaviour
 
         }
     }
+
+ 
     enum RenegadeStates
     {
         Idle,

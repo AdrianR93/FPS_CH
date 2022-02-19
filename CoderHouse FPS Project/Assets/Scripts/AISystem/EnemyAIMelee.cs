@@ -13,6 +13,8 @@ public class EnemyAIMelee : MonoBehaviour
 
     public LayerMask whatIsGround, WhatIsPlayer;
 
+    private float currentHealth;
+
     Animator _animator;
 
 
@@ -42,6 +44,7 @@ public class EnemyAIMelee : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        
 
     }
 
@@ -49,7 +52,7 @@ public class EnemyAIMelee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        currentHealth = GetComponent<Target>().health;
         _animator = GetComponent<Animator>();
         damage = enemyStatus.damage;
 

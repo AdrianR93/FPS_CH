@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Transform BossRenegade;
     public Transform player;
     [SerializeField] private Transform crosshair;
+    private bool isBossSpawned;
 
 
     private void Awake()
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         scoreText.text = score.ToString() + " POINTS";
         highscoreText.text = "Highscore: " + highscore.ToString() + " POINTS";
+        isBossSpawned = false;
     }
 
     public void AddScore(int pointsToAdd)
@@ -57,11 +59,14 @@ public class GameManager : MonoBehaviour
     {
         score += 10;
         scoreText.text = score.ToString() + " POINTS";
-
-        if (score >= 50)
+        if (isBossSpawned == false)
         {
-            SpawnBossRenegade();
+            if (score >= 50)
+            {
+                SpawnBossRenegade();
+                isBossSpawned = true;
 
+            }
         }
 
 
@@ -74,7 +79,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnBossRenegade()
     {
-        BossRenegade.gameObject.SetActive(true);
+
+       // BossRenegade.gameObject.SetActive(true);
         Vector3 playerPos = player.transform.position;
         Vector3 playerDirection = player.transform.forward;
         Quaternion playerRotation = player.transform.rotation;

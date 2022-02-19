@@ -17,6 +17,8 @@ public class BossDrone : MonoBehaviour
 
     Animator _animator;
 
+    private float currentHealth;
+
 
     private bool isEnemyDead;
 
@@ -60,14 +62,20 @@ public class BossDrone : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         damage = enemyStatus.damage;
+        currentHealth = GetComponent<Target>().health;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
         Target locomotion = gameObject.GetComponent<Target>();
-        if (locomotion.isEnemyDead == true)
+        if (locomotion.isEnemyDead == false)
         {
 
             // Check for sight and Attack Range

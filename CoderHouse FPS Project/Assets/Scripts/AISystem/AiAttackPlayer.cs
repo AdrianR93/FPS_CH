@@ -15,6 +15,8 @@ public class AiAttackPlayer : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public static int damage = 20;
+
+    public float currentHealth;
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -34,7 +36,7 @@ public class AiAttackPlayer : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-
+        currentHealth = GetComponent<Target>().health;
     }
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,7 @@ public class AiAttackPlayer : MonoBehaviour
     void Update()
     {
         Target locomotion = gameObject.GetComponent<Target>();
-        if (locomotion.isEnemyDead != true)
+        if (!locomotion.isEnemyDead)
         {
             //Check for sight and attack range
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);

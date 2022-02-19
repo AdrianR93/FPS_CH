@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - RedRobotMuzzle
   - Door
+  - Boss
   layers:
   - Default
   - TransparentFX
