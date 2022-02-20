@@ -47,9 +47,18 @@ public class BossDrone : MonoBehaviour
     public float amplitude = 0.5f;
     public float frequency = 1f;
 
+    // Drone Shader
+    public int x;
+    Renderer rend;
+    public float dissolveSpeed = 1f;
+    private float maxValue = 1;
+    private bool dissolved;
+
 
     private void Awake()
     {
+
+
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
 
@@ -59,6 +68,12 @@ public class BossDrone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Dissolve properties
+        maxValue = 1;
+        dissolved = true;
+        x = 0;
+        rend = GetComponent<Renderer>();
+        rend.enabled = true;
 
         _animator = GetComponent<Animator>();
         damage = enemyStatus.damage;
@@ -69,11 +84,18 @@ public class BossDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (currentHealth <= 0)
+        if (dissolved == true)
         {
-            Destroy(gameObject);
+            maxValue -= dissolveSpeed;
+            rend.sharedMaterial.SetFloat("Dissolve", maxValue);
+
+            if (maxValue <= 0.0f)
+            {
+                maxValue = 0f;
+            }
         }
+
+
         Target locomotion = gameObject.GetComponent<Target>();
         if (locomotion.isEnemyDead == false)
         {
@@ -174,6 +196,11 @@ public class BossDrone : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+
+    private void Dissolve()
+    {
+        dissolved = false;
     }
 
 }

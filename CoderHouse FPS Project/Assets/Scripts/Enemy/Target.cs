@@ -55,4 +55,9 @@ public class Target : MonoBehaviour
             
         }
     }
+
+    private void DestroyOnDeath()
+    {
+        Destroy(gameObject);
+    }
 }

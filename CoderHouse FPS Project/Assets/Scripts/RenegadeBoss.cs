@@ -333,6 +333,7 @@ public class RenegadeBoss : MonoBehaviour
         {
 
             _forceField.gameObject.SetActive(true);
+            SpawnDrones();
             currentHealth += healing * (healSpeed * Time.deltaTime);
             healthBar.SetHealth(currentHealth);
             alreadyDeployed = true;
@@ -343,12 +344,6 @@ public class RenegadeBoss : MonoBehaviour
                 agent.SetDestination(transform.position);
             }
 
-            
-
-            /* while (currentHealth <= 800)
-             {
-                 agent.SetDestination(transform.position);
-             }*/
         }    
 
 
@@ -385,42 +380,9 @@ public class RenegadeBoss : MonoBehaviour
         audioSource.PlayOneShot(bossOver);
         AddScore();
         dissolved = false;
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 2f);
 
     }
-
-
-    private void NotDissolve()
-    {        
-        {
-            maxValue = 1;
-            maxValue -= dissolveSpeed;
-            rend.sharedMaterial.SetFloat("Dissolve", maxValue);
-
-            if (maxValue <= 0)
-            {
-                maxValue = 0;
-            }
-        }
-    }
-
-    private void Dissolve()
-    {
-        {
-            {
-                maxValue = 0;
-                maxValue += dissolveSpeed;
-                rend.sharedMaterial.SetFloat("Dissolve", maxValue);
-
-                if (maxValue >= 1)
-                {
-                    maxValue = 1;
-                }
-            }
-        }
-    }
-
-
 
     private void AddScore()
     {
@@ -430,6 +392,18 @@ public class RenegadeBoss : MonoBehaviour
             pointsToAdd = true;
 
         }
+    }
+
+    private void SpawnDrones()
+    {
+        Vector3 bossPos = transform.position;
+        Vector3 bossDirection = transform.forward;
+        Quaternion bossRotation = transform.rotation;
+        float spawnDistance = 2.5f;
+
+        Vector3 spawnPos = bossPos + bossDirection * spawnDistance;
+
+        Instantiate(_drones, spawnPos, bossRotation);
     }
 
  

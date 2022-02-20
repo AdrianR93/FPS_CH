@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     public void SpawnBossRenegade()
     {
 
-       // BossRenegade.gameObject.SetActive(true);
+        BossRenegade.gameObject.SetActive(true);
         Vector3 playerPos = player.transform.position;
         Vector3 playerDirection = player.transform.forward;
         Quaternion playerRotation = player.transform.rotation;
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
         Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
 
-        Instantiate(BossRenegade, spawnPos, playerRotation);
+        BossRenegade.transform.position = spawnPos;
     }
 
 
