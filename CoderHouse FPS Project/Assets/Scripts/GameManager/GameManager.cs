@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     {
         bestTime = PlayerPrefs.GetFloat("bestTime", 0);
         scoreText.text = score.ToString() + " POINTS";
-        bestTimeText.text = "Best Time:  " + bestTime.ToString("N2") + " SECONDS";
+        bestTimeText.text = "Best Time Alive:  " + bestTime.ToString("N2") + " SECONDS";
 
         isBossSpawned = false;
         pauseToggle = false;
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         // Timer and Best Time Canvas
         currentTime += Time.deltaTime;
         timeText.text = "Time:  " + currentTime.ToString("N2") + " SECONDS";
-        if (currentTime > bestTime)
+        if (currentTime > bestTime && RenegadeBoss.endGame == true)
         {
             PlayerPrefs.SetFloat("bestTime", currentTime);
         }

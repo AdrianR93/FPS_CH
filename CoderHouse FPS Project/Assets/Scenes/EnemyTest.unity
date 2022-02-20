@@ -20420,7 +20420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _team: 0
-  maxHealth: 300
+  maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 1772636968}
   playerHome: {fileID: 813798465}

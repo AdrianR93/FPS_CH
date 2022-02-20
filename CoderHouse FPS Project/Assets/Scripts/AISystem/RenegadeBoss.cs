@@ -10,6 +10,7 @@ public class RenegadeBoss : MonoBehaviour
     [SerializeField] private Transform _drones;
     [SerializeField] private GameObject _forceField;
     [SerializeField] private GameObject _gameOverscreen;
+    public static bool endGame;
     private RenegadeStates _states;
 
     public EnemyStatus enemyStatus;
@@ -95,6 +96,7 @@ public class RenegadeBoss : MonoBehaviour
 
 
         // Initiating bools
+        endGame = false;
         shieldHeal = false;
         alreadyDeployed = false;
         isEnemyDead = false;
@@ -412,7 +414,8 @@ public class RenegadeBoss : MonoBehaviour
         audioSource.PlayOneShot(bossOver);
         AddScore();
         dissolved = false;
-        Destroy(gameObject, 2.5f);
+        //Destroy(gameObject, 2.5f);
+        Invoke("EndGame", 3f);
 
 
     }
@@ -441,6 +444,7 @@ public class RenegadeBoss : MonoBehaviour
 
     private void EndGame()
     {
+        endGame = true;
         _gameOverscreen.gameObject.SetActive(true);
         Time.timeScale = 0;
         
