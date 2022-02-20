@@ -5,12 +5,16 @@ using UnityEngine.AI;
 
 public class RenegadeBoss : MonoBehaviour
 {
-    private RenegadeStates _states;
-    [SerializeField] private GameObject _forceField;
-    public EnemyStatus enemyStatus;
+    [SerializeField] private GameObject[] spawns = new GameObject[3];
+    [SerializeField] private Vector3[] spawnsVector;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private Transform _drones;
+    [SerializeField] private GameObject _forceField;
+    private RenegadeStates _states;
+
+    public EnemyStatus enemyStatus;
+
     public float currentHealth;
     public float maxHealth = 1000;
     public NavMeshAgent agent;
@@ -62,6 +66,11 @@ public class RenegadeBoss : MonoBehaviour
     private float maxValue;
     private bool isShaderUp;
     [SerializeField] private GameObject bodyShader;
+    private float tpTimer;
+    private float time;
+
+
+
 
     private void Awake()
     {
@@ -73,12 +82,14 @@ public class RenegadeBoss : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {      
+    {
         // Getting Components
         _animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
         // Declaring and Starting Variables
+        time = 0;
+        tpTimer = 15;
         healthBar.SetMaxHealth(maxHealth);
         currentHealth = maxHealth;
         damage = enemyStatus.damage;
@@ -102,6 +113,9 @@ public class RenegadeBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        time +=  Time.deltaTime;
+        
         if (dissolved == true)
         {
                     maxValue -= dissolveSpeed;
@@ -123,6 +137,21 @@ public class RenegadeBoss : MonoBehaviour
                     maxValue = 1.0f;
                 }
         }
+        if (time > 14.5)
+        {
+            dissolved = false;
+            if (time >= tpTimer)
+            {
+                int spawnPointX = Random.Range(-15, 15);
+                int spawnPointZ = Random.Range(-15, 15);
+
+                Vector3 spawnPosition = new Vector3(spawnPointX, 0, spawnPointZ);
+                gameObject.transform.localPosition = spawnPosition;
+                time = 0;
+                dissolved = true;
+            }
+        }
+        
 
         if (!isEnemyDead)
         {
