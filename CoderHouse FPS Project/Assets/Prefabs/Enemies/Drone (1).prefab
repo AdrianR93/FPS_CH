@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2796778078327850153}
   - component: {fileID: 2026772900322034177}
   - component: {fileID: 2026772900322034178}
-  - component: {fileID: 2026772900322034176}
   m_Layer: 6
   m_Name: Drone (1)
   m_TagString: Untagged
@@ -197,20 +196,6 @@ MonoBehaviour:
   health: 100
   isEnemyDead: 0
   pointsToAdd: 0
---- !u!114 &2026772900322034176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2796778078327850155}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f80a0cbb361fa499b2cc1a2e919003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 0
-  dissolveSpeed: 0.02
 --- !u!1 &2796778078899706863
 GameObject:
   m_ObjectHideFlags: 0

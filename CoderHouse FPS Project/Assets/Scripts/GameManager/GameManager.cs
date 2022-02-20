@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             {
                 if (pauseToggle == true)
 
-                    _pauseMenu.gameObject.SetActive(true);
+                _pauseMenu.gameObject.SetActive(true);
                 Time.timeScale = 0;
                 pauseToggle = true;
                 Cursor.lockState = CursorLockMode.Confined;

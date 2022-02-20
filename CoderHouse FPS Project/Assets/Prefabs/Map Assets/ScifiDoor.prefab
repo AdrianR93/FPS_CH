@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &342275204036525582
 Transform:
@@ -43,7 +43,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 3.33, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &342275204036525581
 MonoBehaviour:
@@ -76,7 +76,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &342275205433834084
 Transform:
@@ -184,7 +184,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &3055002618394938760
 Transform:
@@ -211,9 +211,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3055002618394938760}
     m_Modifications:
+    - target: {fileID: 156394, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 189474, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
       propertyPath: m_Name
       value: Door_Arch_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 189474, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 477062, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
       propertyPath: m_LocalScale.x
@@ -314,9 +322,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3055002618394938760}
     m_Modifications:
+    - target: {fileID: 156394, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 189474, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
       propertyPath: m_Name
       value: Door_Arch_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 189474, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 477062, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
       propertyPath: m_LocalScale.x
@@ -328,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477062, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.54
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 477062, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
       propertyPath: m_LocalPosition.y

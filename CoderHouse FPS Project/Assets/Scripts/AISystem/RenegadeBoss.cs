@@ -88,7 +88,7 @@ public class RenegadeBoss : MonoBehaviour
 
         // Declaring and Starting Variables
         time = 0;
-        tpTimer = 15;
+        tpTimer = 8;
         healthBar.SetMaxHealth(maxHealth);
         currentHealth = maxHealth;
         damage = enemyStatus.damage;
@@ -155,7 +155,7 @@ public class RenegadeBoss : MonoBehaviour
                 _animator.SetFloat("Speed", 0);
             }
 
-            if (time > 14.5)
+            if (time > 7.5)
             {
                 dissolved = false;
                 if (time >= tpTimer)
@@ -412,8 +412,8 @@ public class RenegadeBoss : MonoBehaviour
         audioSource.PlayOneShot(bossOver);
         AddScore();
         dissolved = false;
-        Destroy(gameObject, 2f);
-        
+        Destroy(gameObject, 2.5f);
+
 
     }
 

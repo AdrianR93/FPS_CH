@@ -2585,6 +2585,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   audioSource: {fileID: 2054359026014118951}
   intruderAlert: {fileID: 8300000, guid: c9905d15743f3694ab79fb9c4dd5dca3, type: 3}
+  locomotion: {fileID: 0}
 --- !u!114 &7611423242871586125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2621,14 +2622,15 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 4096
+  currentHealth: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 1
   projectile: {fileID: 7390206414612337457, guid: 0a32c69b9aa69f248974d14b821f538c,
     type: 3}
   _animator: {fileID: 0}
-  sightRange: 10
-  attackRange: 10
+  sightRange: 25
+  attackRange: 15
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!1 &7163045526614954759
