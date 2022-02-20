@@ -498,7 +498,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58c2cf994000c2e459d502d5b1700f29, type: 2}
+  - {fileID: 2100000, guid: edc28d4cd35704248a4d6909e8092b34, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2579,12 +2579,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe806f0037c47a42b1bee98673aefd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: 2
+  initialState: 0
   navMeshAgent: {fileID: 0}
   config: {fileID: 11400000, guid: a4b0f58c25605f247b2df2723209fefd, type: 2}
   playerTransform: {fileID: 0}
   audioSource: {fileID: 8387123438219966191}
   intruderAlert: {fileID: 8300000, guid: c9905d15743f3694ab79fb9c4dd5dca3, type: 3}
+  locomotion: {fileID: 0}
 --- !u!114 &7611423242871586125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2599,6 +2600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStatus: {fileID: 11400000, guid: 275d6b16c1dfd064e8f687e15cf0a552, type: 2}
   health: 50
+  isEnemyDead: 0
   pointsToAdd: 0
 --- !u!114 &-4988614406828762366
 MonoBehaviour:
@@ -2620,14 +2622,15 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 4096
+  currentHealth: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 1
-  projectile: {fileID: 7835268139970515333, guid: f22a75a192cc25b4d95295ae00ac4884,
+  projectile: {fileID: 7390206414612337457, guid: 0a32c69b9aa69f248974d14b821f538c,
     type: 3}
   _animator: {fileID: 0}
-  sightRange: 10
-  attackRange: 10
+  sightRange: 25
+  attackRange: 15
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!1 &7163045526614954759

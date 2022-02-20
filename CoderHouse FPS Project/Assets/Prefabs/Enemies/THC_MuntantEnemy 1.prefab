@@ -313,9 +313,9 @@ NavMeshAgent:
   m_GameObject: {fileID: 1227406748425665166}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 4
-  m_Acceleration: 8
+  m_Radius: 1.55
+  m_Speed: 10
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 1.5
@@ -351,7 +351,7 @@ MonoBehaviour:
   walkPointRange: 10
   timeBetweenAttacks: 1
   damage: 1
-  sightRange: 20
+  sightRange: 25
   attackRange: 3
   animAttackRange: 3
   playerInSightRange: 0
@@ -385,6 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStatus: {fileID: 11400000, guid: b93477dfc24846849b8beeec3c4f9c00, type: 2}
   health: 10
+  isEnemyDead: 0
+  pointsToAdd: 0
 --- !u!1 &1227406748425665940
 GameObject:
   m_ObjectHideFlags: 0

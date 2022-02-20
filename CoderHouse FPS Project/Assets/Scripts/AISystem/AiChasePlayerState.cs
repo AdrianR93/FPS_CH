@@ -22,17 +22,16 @@ public class AiChasePlayerState : AiState
 
     public void Update(AiAgent agent)
     {
-        //if (Target.isEnemyDead == false)     
             if (!agent.enabled)
-        {
-            return;
-        }
+            {
+                return;
+            }
 
-        timer -= Time.deltaTime;
-        if (!agent.navMeshAgent.hasPath)
-        {
+            timer -= Time.deltaTime;
+            if (!agent.navMeshAgent.hasPath)
+            {
             agent.navMeshAgent.destination = playerTransform.position;
-        }
+            }
             if (timer < 0.0f)
             {
                 Vector3 direction = (playerTransform.position - agent.navMeshAgent.destination);
@@ -45,8 +44,8 @@ public class AiChasePlayerState : AiState
                     }
                 }
 
-            timer = agent.config.maxTime;
-        }
+                timer = agent.config.maxTime;
+            }
     }
     public void Exit(AiAgent agent)
     {

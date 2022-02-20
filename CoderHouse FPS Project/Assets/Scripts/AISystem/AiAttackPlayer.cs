@@ -15,6 +15,8 @@ public class AiAttackPlayer : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public static int damage = 20;
+
+    public float currentHealth;
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -34,15 +36,12 @@ public class AiAttackPlayer : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-
+        currentHealth = GetComponent<Target>().health;
     }
     // Start is called before the first frame update
     void Start()
     {
-        /* if (spawnBullet == null)
-         {
-             spawnBullet = GameObject.FindGameObjectWithTag("RedRobotMuzzle").transform;
-         } */
+
 
         _animator = GetComponent<Animator>();
     }
@@ -50,7 +49,8 @@ public class AiAttackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Target.isEnemyDead == true)
+        Target locomotion = gameObject.GetComponent<Target>();
+        if (!locomotion.isEnemyDead)
         {
             //Check for sight and attack range
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -75,7 +75,7 @@ public class AiAttackPlayer : MonoBehaviour
         if (!alreadyAttacked)
         {
             _animator.SetTrigger("Shoot");
-            StartCoroutine(Bullet());
+           //StartCoroutine(Bullet());
 
 
             ///End of attack code
@@ -90,19 +90,10 @@ public class AiAttackPlayer : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    /*private void BulletOut()
+    private void  Bullet()
     {
         Rigidbody rb = Instantiate(projectile, spawnBullet.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
         rb.AddForce(-transform.up * 4f, ForceMode.Impulse);
-    }*/
-
-    IEnumerator Bullet()
-    {
-        yield return new WaitForSeconds(0.3f);
-        Rigidbody rb = Instantiate(projectile, spawnBullet.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        rb.AddForce(-transform.up * 4f, ForceMode.Impulse);
-        yield return new WaitForSeconds(0.3f);
     }
 }

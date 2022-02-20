@@ -5,6 +5,16 @@ using UnityEngine;
 public class CustomProjectiles : MonoBehaviour
   
     {
+    private void Start()
+    {
+
+
+    }
+
+    private void Update()
+    {
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject, 1f);

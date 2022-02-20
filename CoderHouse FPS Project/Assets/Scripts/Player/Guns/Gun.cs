@@ -21,7 +21,7 @@ public abstract class Gun : MonoBehaviour
 
     [SerializeField] protected float nextTimeToFire = 0f;
     public bool crateOpen;
-    public LayerMask whatIsEnemy, whatIsCrate;
+    public LayerMask whatIsEnemy, whatIsCrate, whatIsBoss;
     public int id;
 
 
@@ -77,6 +77,28 @@ public abstract class Gun : MonoBehaviour
 
 
             GameObject impactGameObject = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
+            Destroy(impactGameObject, 0.3f);
+        }
+        RaycastHit hitBoss;
+        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hitBoss, range, whatIsBoss))
+        {
+            Debug.Log(hitBoss.transform.name);
+
+            RenegadeBoss boss = hitBoss.transform.GetComponent<RenegadeBoss>();
+
+            if (boss != null)
+            {
+                boss.TakeDamage(damage);
+            }
+
+            if (hitBoss.rigidbody != null)
+            {
+                hitBoss.rigidbody.AddForce(-hitBoss.normal * bulletForce);
+            }
+
+
+            GameObject impactGameObject = Instantiate(impactEffect, hitBoss.point, Quaternion.LookRotation(hitBoss.normal));
 
             Destroy(impactGameObject, 0.3f);
         }

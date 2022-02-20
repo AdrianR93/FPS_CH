@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerLifeController : MonoBehaviour
 {
+    public Team Teams => _team;
+    [SerializeField] private Team _team;
     GameManager instance;
     public float maxHealth = 100;
     public float currentHealth;
@@ -40,5 +43,11 @@ public class PlayerLifeController : MonoBehaviour
             Debug.Log("Player is dead");
         }
 
+    }
+
+    public enum Team
+    {
+        Red,
+        Blue
     }
 }
