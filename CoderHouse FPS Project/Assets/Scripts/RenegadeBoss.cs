@@ -5,12 +5,11 @@ using UnityEngine.AI;
 
 public class RenegadeBoss : MonoBehaviour
 {
-    [SerializeField] private GameObject[] spawns = new GameObject[3];
-    [SerializeField] private Vector3[] spawnsVector;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private Transform _drones;
     [SerializeField] private GameObject _forceField;
+    [SerializeField] private GameObject _gameOverscreen;
     private RenegadeStates _states;
 
     public EnemyStatus enemyStatus;
@@ -45,7 +44,7 @@ public class RenegadeBoss : MonoBehaviour
     public float damage;
 
     // States
-    public float sightRange, attackRange, animAttackRange;
+    public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool pointsToAdd;
 
@@ -137,20 +136,7 @@ public class RenegadeBoss : MonoBehaviour
                     maxValue = 1.0f;
                 }
         }
-        if (time > 14.5)
-        {
-            dissolved = false;
-            if (time >= tpTimer)
-            {
-                int spawnPointX = Random.Range(-15, 15);
-                int spawnPointZ = Random.Range(-15, 15);
-
-                Vector3 spawnPosition = new Vector3(spawnPointX, 0, spawnPointZ);
-                gameObject.transform.localPosition = spawnPosition;
-                time = 0;
-                dissolved = true;
-            }
-        }
+       
         
 
         if (!isEnemyDead)
@@ -167,6 +153,21 @@ public class RenegadeBoss : MonoBehaviour
             else
             {
                 _animator.SetFloat("Speed", 0);
+            }
+
+            if (time > 14.5)
+            {
+                dissolved = false;
+                if (time >= tpTimer)
+                {
+                    int spawnPointX = Random.Range(-15, 15);
+                    int spawnPointZ = Random.Range(-15, 15);
+
+                    Vector3 spawnPosition = new Vector3(spawnPointX, 0, spawnPointZ);
+                    gameObject.transform.localPosition = spawnPosition;
+                    time = 0;
+                    dissolved = true;
+                }
             }
 
             switch (_states)
@@ -190,10 +191,12 @@ public class RenegadeBoss : MonoBehaviour
                             _states = RenegadeStates.Chasing;
                         }
 
-                        if (currentHealth <= 800)
+                        if (playerInSightRange && playerInAttackRange)
                         {
-                            _states = RenegadeStates.ForceField;
+                            _states = RenegadeStates.Shooting;
                         }
+
+
                     }
                     break;
 
@@ -410,6 +413,7 @@ public class RenegadeBoss : MonoBehaviour
         AddScore();
         dissolved = false;
         Destroy(gameObject, 2f);
+        
 
     }
 
@@ -433,6 +437,13 @@ public class RenegadeBoss : MonoBehaviour
         Vector3 spawnPos = bossPos + bossDirection * spawnDistance;
 
         Instantiate(_drones, spawnPos, bossRotation);
+    }
+
+    private void EndGame()
+    {
+        _gameOverscreen.gameObject.SetActive(true);
+        Time.timeScale = 0;
+        
     }
 
  

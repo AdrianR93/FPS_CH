@@ -8,14 +8,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Text scoreText;
-    public Text highscoreText;
+    public Text timeText;
+    public Text bestTimeText;
     int score = 0;
-    int highscore = 0;
+    float currentTime = 0;
+    float bestTime = 0;
     public bool _playerIsDead;
     public Transform gameOver;
     public Transform BossRenegade;
     public Transform player;
     [SerializeField] private Transform crosshair;
+    [SerializeField] private GameObject _pauseMenu;
+    private bool pauseToggle;
     private bool isBossSpawned;
 
 
@@ -34,16 +38,50 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        bestTime = PlayerPrefs.GetFloat("bestTime", 0);
         scoreText.text = score.ToString() + " POINTS";
-        highscoreText.text = "Highscore: " + highscore.ToString() + " POINTS";
+        bestTimeText.text = "Best Time:  " + bestTime.ToString("N2") + " SECONDS";
+
         isBossSpawned = false;
+        pauseToggle = false;
     }
 
-    public void AddScore(int pointsToAdd)
+    public void Update()
     {
+        // Timer and Best Time Canvas
+        currentTime += Time.deltaTime;
+        timeText.text = "Time:  " + currentTime.ToString("N2") + " SECONDS";
+        if (currentTime > bestTime)
+        {
+            PlayerPrefs.SetFloat("bestTime", currentTime);
+        }
+
+
+        // Pause Menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            {
+                if (pauseToggle == true)
+
+                    _pauseMenu.gameObject.SetActive(true);
+                Time.timeScale = 0;
+                pauseToggle = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+            }
+            
+                if(pauseToggle == false)
+            {
+                _pauseMenu.gameObject.SetActive(false);
+                Time.timeScale = 1;
+                pauseToggle = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+
+        }
 
     }
-
     public void GameOverScreen()
     {
         gameOver.gameObject.SetActive(true);
@@ -61,7 +99,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = score.ToString() + " POINTS";
         if (isBossSpawned == false)
         {
-            if (score >= 50)
+            if (score >= 100)
             {
                 SpawnBossRenegade();
                 isBossSpawned = true;
@@ -74,8 +112,34 @@ public class GameManager : MonoBehaviour
 
     public void QuitButton()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
     }
+
+    public void ReloadLevel()
+    {
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        _pauseMenu.gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
 
     public void SpawnBossRenegade()
     {
@@ -84,7 +148,7 @@ public class GameManager : MonoBehaviour
         Vector3 playerPos = player.transform.position;
         Vector3 playerDirection = player.transform.forward;
         Quaternion playerRotation = player.transform.rotation;
-        float spawnDistance = 10;
+        float spawnDistance = 5;
 
         Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
 
