@@ -9,15 +9,11 @@ public class HeavyGun : Gun
     {
         if (Input.GetButton("Fire1") && Time.time >= base.nextTimeToFire)
         {
+            shootingAnimator.SetTrigger("HeavyShoot");
             nextTimeToFire = Time.time + 1f / fireRate;
             base.Shoot();
             recoil.Recoilfiring(recoilX, recoilY, recoilZ);
         }
 
-        // Method to call Loot chests interactions
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            base.OnCrateOpen();
-        }
     }
 }

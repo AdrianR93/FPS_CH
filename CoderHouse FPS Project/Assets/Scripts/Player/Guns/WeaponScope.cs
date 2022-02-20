@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class WeaponScope : MonoBehaviour
 {
+    private WeaponHolder weaponHolder;
+
     [SerializeField] private Animator animator;
 
-    private bool isScoped = false;
+    public bool isScoped = false;
 
     [SerializeField] GameObject weaponCamera;
 
@@ -17,21 +19,31 @@ public class WeaponScope : MonoBehaviour
 
     float normalFOV;
 
+    private void Start()
+    {
+        weaponHolder = GetComponent<WeaponHolder>();
+    }
+
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire2"))
         {
+            int aux = weaponHolder.GetCurrentWeapon();
+            Debug.Log(aux);
             isScoped = !isScoped;
             animator.SetBool("Scoped", isScoped);
-
-            if (isScoped)
+            if (aux >= 2)
             {
-                StartCoroutine(ScopeOn());
-            }
-            else
-            {
-                ScopeOff();
+                if (isScoped)
+                {
+                    StartCoroutine(ScopeOn());
+                }
+                else
+                {
+                    ScopeOff();
+                }
             }
         }
     }
