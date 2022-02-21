@@ -7,7 +7,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private List<GameObject> typesOfEnemies = new List<GameObject>();
     [SerializeField] private Transform[] enemySpots = new Transform[11];
     public List<GameObject> enemiesOnMap = new List<GameObject>();
-    private int cantidadDeEnemigos;
+    private int enemyQtys;
 
 
     // Start is called before the first frame update
@@ -40,9 +40,9 @@ public class EnemySpawn : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        cantidadDeEnemigos = Random.Range(0, 10);
+        enemyQtys = Random.Range(0, 10);
 
-        for (int i = 0; i < cantidadDeEnemigos; i++)
+        for (int i = 0; i < enemyQtys; i++)
         {
             int enemyType = Random.Range(0, typesOfEnemies.Count - 1);
             CreateEnemies(typesOfEnemies[enemyType], enemySpots[i]);
@@ -52,6 +52,12 @@ public class EnemySpawn : MonoBehaviour
     {
         GameObject GO = Instantiate(_enemyType, _enemyspots);
         enemiesOnMap.Add(GO);
+    }
+
+    public int GetEnemies()
+    {
+        return 0;
+
     }
 
 

@@ -9,11 +9,13 @@ TagManager:
   - Chest
   - Bullet
   - RedRobotMuzzle
+  - Door
+  - Boss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - StartRoom
   - Water
   - UI
   - Enemy
@@ -23,7 +25,7 @@ TagManager:
   - Postprocessing
   - Weapon
   - Player
-  - 
+  - Boss
   - 
   - 
   - 

@@ -58,10 +58,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f6c5043b258bd349af5cca0ea498030, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &7835268139970515384
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -120,22 +122,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7835268139970515333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7d0e97d58591945b59aba8af091cbd, type: 3}
+  m_Script: {fileID: 11500000, guid: f725f49de760cf2489bce867489fd968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
   rb: {fileID: 7835268139970515335}
-  explosion: {fileID: 2291373124182283588, guid: d64944191d713a24aaf4143b0bee54f2,
-    type: 3}
+  explosion: {fileID: 7835268139970515333}
   whatIsEnemies:
     serializedVersion: 2
-    m_Bits: 2048
-  bounciness: 0.935
-  useGravity: 1
-  explosionDamage: 50
-  explosionRange: 1
-  maxCollisions: 6
-  maxLifetime: 3
+    m_Bits: 4096
+  bounciness: 0.64
+  useGravity: 0
+  explosionDamage: 100
+  explosionRange: 5
+  explosionForce: 1
+  maxCollisions: 1
+  maxLifetime: 1
   explodeOnTouch: 1
   secondBullet: {fileID: 0}
   sb_amount: 0
@@ -146,9 +148,9 @@ MonoBehaviour:
   damageGrowingSpeed: 0
   maxScale: 0
   maxDamage: 0
-  stickToObjects: 0
+  stickToObjects: 1
   checkForEnemies: 0
-  checkRange: 0
+  checkRange: 5
   objectToSpawn: {fileID: 0}
   timeBetweenSpawns: 0
   preferredSpawnPoints: []
@@ -173,7 +175,7 @@ MonoBehaviour:
   waitMidAir: 0
   dropForce: 0
   explodeDirectlyAfterDrop: 1
-  smokeEffect: {fileID: 0}
+  smokeEffect: {fileID: 7835268139970515333}
   useCustomGravity: 0
   gravityDirection: {x: 0, y: 0, z: 0}
   gravityStrength: 0

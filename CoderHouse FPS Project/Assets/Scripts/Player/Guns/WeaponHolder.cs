@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
+    private WeaponScope weaponScope;
+
     [SerializeField] int selectedWeapon = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        weaponScope = FindObjectOfType<WeaponScope>();
         SelectWeapon();
     }
     void Update()
     {
+        if (weaponScope.isScoped)
+            return;
+
         int currentWeapon = selectedWeapon;
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
@@ -88,4 +94,8 @@ public class WeaponHolder : MonoBehaviour
         }
     }
 
+    public int GetCurrentWeapon()
+    {
+        return selectedWeapon;
+    }
 }

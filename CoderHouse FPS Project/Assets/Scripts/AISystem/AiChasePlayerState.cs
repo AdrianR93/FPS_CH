@@ -22,30 +22,30 @@ public class AiChasePlayerState : AiState
 
     public void Update(AiAgent agent)
     {
-        if (!agent.enabled)
-        {
-            return;
-        }
-
-        timer -= Time.deltaTime;
-        if (!agent.navMeshAgent.hasPath)
-        {
-            agent.navMeshAgent.destination = playerTransform.position;
-        }
-        if (timer < 0.0f)
-        {
-            Vector3 direction = (playerTransform.position - agent.navMeshAgent.destination);
-            direction.y = 0;
-            if (direction.sqrMagnitude > agent.config.maxDistance * agent.config.maxDistance)
+            if (!agent.enabled)
             {
-                if (agent.navMeshAgent.pathStatus != NavMeshPathStatus.PathPartial)
-                {
-                    agent.navMeshAgent.destination = playerTransform.position;
-                }
+                return;
             }
 
-            timer = agent.config.maxTime;
-        }
+            timer -= Time.deltaTime;
+            if (!agent.navMeshAgent.hasPath)
+            {
+            agent.navMeshAgent.destination = playerTransform.position;
+            }
+            if (timer < 0.0f)
+            {
+                Vector3 direction = (playerTransform.position - agent.navMeshAgent.destination);
+                direction.y = 0;
+                if (direction.sqrMagnitude > agent.config.maxDistance * agent.config.maxDistance)
+                {
+                    if (agent.navMeshAgent.pathStatus != NavMeshPathStatus.PathPartial)
+                    {
+                        agent.navMeshAgent.destination = playerTransform.position;
+                    }
+                }
+
+                timer = agent.config.maxTime;
+            }
     }
     public void Exit(AiAgent agent)
     {

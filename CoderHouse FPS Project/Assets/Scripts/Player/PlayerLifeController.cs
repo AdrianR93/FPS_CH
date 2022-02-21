@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerLifeController : MonoBehaviour
 {
+
     GameManager instance;
     public float maxHealth = 100;
     public float currentHealth;
