@@ -356,11 +356,6 @@ public class RenegadeBoss : MonoBehaviour
         rb.AddForce(-transform.up * 4f, ForceMode.Impulse);
     }
 
-    private void Teleport()
-    {
-        Debug.Log("Nothing to see here yey");
-    }
-
     private void ForceField()
     {
         if (alreadyDeployed == false)
@@ -446,8 +441,11 @@ public class RenegadeBoss : MonoBehaviour
     {
         endGame = true;
         _gameOverscreen.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         Time.timeScale = 0;
-        
+
+
     }
 
  

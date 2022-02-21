@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingAnimator: {fileID: 6470544052674053798}
-  damage: 10
+  damage: 5
   bulletForce: 100
   fireRate: 20
   fpsCamera: {fileID: 5398609951384682155}
@@ -7958,7 +7958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingAnimator: {fileID: 6470544052674053798}
-  damage: 100
+  damage: 40
   bulletForce: 100
   fireRate: 1.3
   fpsCamera: {fileID: 5398609951384682155}
@@ -8878,7 +8878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingAnimator: {fileID: 6470544052674053798}
-  damage: 100
+  damage: 50
   bulletForce: 600
   fireRate: 1
   fpsCamera: {fileID: 5398609951384682155}
