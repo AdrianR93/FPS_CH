@@ -9,7 +9,7 @@ public class HeavyGun : Gun
     {
         if (Input.GetButton("Fire1") && Time.time >= base.nextTimeToFire)
         {
-            shootingAnimator.SetTrigger("HeavyShoot");
+            animator.SetTrigger("HeavyShoot");
             nextTimeToFire = Time.time + 1f / fireRate;
             base.Shoot();
             recoil.Recoilfiring(recoilX, recoilY, recoilZ);

@@ -7,16 +7,21 @@ public abstract class Gun : MonoBehaviour
 {
     protected Recoil recoil;
 
-    [SerializeField] protected Animator shootingAnimator;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected ParticleSystem muzzeFlash;
+    [SerializeField] Camera fpsCamera;
 
     [SerializeField] protected float damage = 10f;
     private float range = 100f;
     [SerializeField] protected float bulletForce = 100;
     [SerializeField] protected float fireRate = 20f;
 
-    [SerializeField] Camera fpsCamera;
+    [SerializeField] protected int TotalBullets = 50;
+    [SerializeField] protected int magazineBullets = 10;
+    [SerializeField] protected int currentBullets;
+    private bool isReloading = false;
 
-    [SerializeField] protected ParticleSystem muzzeFlash;
+
     [SerializeField] protected GameObject impactEffect;
 
     [SerializeField] protected float nextTimeToFire = 0f;
@@ -30,19 +35,43 @@ public abstract class Gun : MonoBehaviour
     private void Start()
     {
         recoil = FindObjectOfType<Recoil>();
+        currentBullets = magazineBullets;
     }
 
     protected virtual void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
+
+
+
+
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && currentBullets > 0)
         {
+            currentBullets--;
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
             recoil.Recoilfiring(recoilX, recoilY, recoilZ);
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
+        }
 
 
+    }
+
+    IEnumerator Reload()
+    {
+
+
+        isReloading = true;
+        animator.SetBool("isReloading", true);
+        yield return new WaitForSeconds(90f);
+
+
+
+        isReloading = false;
+        animator.SetBool("isReloading", false);
     }
 
     protected virtual private void Shoot()

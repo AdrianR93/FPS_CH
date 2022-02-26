@@ -12,7 +12,7 @@ public class LongGun : Gun
     {
         if (Input.GetButton("Fire1") && Time.time >= base.nextTimeToFire)
         {
-            shootingAnimator.SetTrigger("LongShoot");
+            animator.SetTrigger("LongShoot");
             nextTimeToFire = Time.time + 1f / fireRate;
             for (int i = 0; i < numberOfBullets - 1; i++)
             {

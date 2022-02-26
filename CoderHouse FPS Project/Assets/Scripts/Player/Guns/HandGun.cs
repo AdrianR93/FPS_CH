@@ -11,7 +11,7 @@ public class HandGun : Gun
     {
         if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
         {
-            shootingAnimator.SetTrigger("PistolShoot");
+            animator.SetTrigger("PistolShoot");
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
             recoil.Recoilfiring(recoilX, recoilY, recoilZ);
