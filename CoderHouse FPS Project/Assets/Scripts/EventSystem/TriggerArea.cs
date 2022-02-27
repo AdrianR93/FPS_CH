@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerArea : MonoBehaviour
 {
+
     public int id;
     private void OnTriggerEnter(Collider other)
     {
@@ -11,6 +12,8 @@ public class TriggerArea : MonoBehaviour
         {
             GameEvents.current.DoorwayTriggerEnter(id);
         }
+
+        
         
       
     }
@@ -21,5 +24,6 @@ public class TriggerArea : MonoBehaviour
         {
             GameEvents.current.DoorwayTriggerExit(id);
         }
+
     }
 }

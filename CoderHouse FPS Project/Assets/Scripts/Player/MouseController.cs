@@ -38,8 +38,8 @@ public class MouseController : MonoBehaviour
 
         cameraAngle = Mathf.Clamp(cameraAngle, -90.0f, 90.0f);
 
-        playerCameraPov.localEulerAngles = Vector3.right * cameraAngle;
+        playerCameraPov.localEulerAngles = Vector3.right * cameraAngle * Time.timeScale;
 
-        player.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
+        player.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity * Time.timeScale);
     }
 }

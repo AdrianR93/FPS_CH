@@ -19,8 +19,10 @@ public class GameManager : MonoBehaviour
     public Transform player;
     [SerializeField] private Transform crosshair;
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject tutorialCanvas;
     private bool pauseToggle;
     private bool isBossSpawned;
+    private bool tutKey;
 
 
     private void Awake()
@@ -45,10 +47,28 @@ public class GameManager : MonoBehaviour
 
         isBossSpawned = false;
         pauseToggle = false;
+        tutKey = true;
     }
 
     public void Update()
     {
+        // Tutorial Canvas
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            tutKey = !tutKey;
+            {
+                if (tutKey == true)
+                {
+                    tutorialCanvas.gameObject.SetActive(true);
+                }
+                if (tutKey == false)
+                {
+                    tutorialCanvas.gameObject.SetActive(false);
+                }
+            }
+        }
+           
+            
         // Timer and Best Time Canvas
         currentTime += Time.deltaTime;
         timeText.text = "Time:  " + currentTime.ToString("N2") + " SECONDS";
@@ -61,12 +81,14 @@ public class GameManager : MonoBehaviour
         // Pause Menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            pauseToggle = !pauseToggle;
+
             {
                 if (pauseToggle == true)
 
                 _pauseMenu.gameObject.SetActive(true);
                 Time.timeScale = 0;
-                pauseToggle = true;
+                //pauseToggle = true;
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
             }
@@ -75,7 +97,7 @@ public class GameManager : MonoBehaviour
             {
                 _pauseMenu.gameObject.SetActive(false);
                 Time.timeScale = 1;
-                pauseToggle = false;
+                //pauseToggle = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
