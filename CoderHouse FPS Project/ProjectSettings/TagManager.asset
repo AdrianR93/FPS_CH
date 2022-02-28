@@ -6,21 +6,26 @@ TagManager:
   tags:
   - Shootable
   - Enemy
+  - Chest
+  - Bullet
+  - RedRobotMuzzle
+  - Door
+  - Boss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - StartRoom
   - Water
   - UI
   - Enemy
-  - 
+  - Chest
   - Lighting
   - Ground
   - Postprocessing
-  - 
+  - Weapon
   - Player
-  - 
+  - Boss
   - 
   - 
   - 

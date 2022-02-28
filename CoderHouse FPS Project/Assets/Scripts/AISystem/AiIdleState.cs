@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AiIdleState : AiState
 {
+    private AudioClip intruderAlert;
+
     public AiStateId GetId()
     {
         return AiStateId.Idle;
@@ -28,6 +30,10 @@ public class AiIdleState : AiState
         float dotProduct = Vector3.Dot(playerDirection, agentDirection);
         if ( dotProduct > 0.0f)
         {
+            intruderAlert = agent.config.intruderAlert;
+            agent.audioSource.clip = intruderAlert;
+            agent.audioSource.PlayOneShot(intruderAlert);
+
             agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
 
 

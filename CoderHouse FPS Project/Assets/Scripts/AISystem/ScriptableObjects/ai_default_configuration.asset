@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTime: 1
   maxDistance: 10
-  maxSightDistance: 15
+  maxSightDistance: 10
+  audioSource: {fileID: 0}
+  intruderAlert: {fileID: 8300000, guid: c9905d15743f3694ab79fb9c4dd5dca3, type: 3}

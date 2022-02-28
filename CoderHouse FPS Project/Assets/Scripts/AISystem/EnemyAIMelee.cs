@@ -13,6 +13,8 @@ public class EnemyAIMelee : MonoBehaviour
 
     public LayerMask whatIsGround, WhatIsPlayer;
 
+    private float currentHealth;
+
     Animator _animator;
 
 
@@ -42,6 +44,7 @@ public class EnemyAIMelee : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        
 
     }
 
@@ -49,7 +52,7 @@ public class EnemyAIMelee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        currentHealth = GetComponent<Target>().health;
         _animator = GetComponent<Animator>();
         damage = enemyStatus.damage;
 
@@ -58,22 +61,19 @@ public class EnemyAIMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-        // Check for sight and Attack Range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
-
-        gameObject.GetComponent<Target>();
-        if (!Target.isEnemyDead == true)
+        Target locomotion = gameObject.GetComponent<Target>();
+        if (!locomotion.isEnemyDead)
         {
-            {
+            // Check for sight and Attack Range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
+
                 if (!playerInSightRange && !playerInAttackRange)
                 {
 
                     Patrolling();
-                    Debug.Log("Patrolling");
-                    return;
+                    //Debug.Log("Patrolling");
+                    
 
                 }
 
@@ -81,8 +81,8 @@ public class EnemyAIMelee : MonoBehaviour
                 {
 
                     ChasePlayer();
-                    Debug.Log("Chasing Player");
-                    return;
+                   // Debug.Log("Chasing Player");
+                    
 
                 } 
     
@@ -90,16 +90,14 @@ public class EnemyAIMelee : MonoBehaviour
 
                 {
                     AttackPlayer();
-                    Debug.Log("Atacking Player");
+                   // Debug.Log("Atacking Player");
                     _animator.SetTrigger("attack");
-                    return;
+                    
 
                 }
-
             }
         }
 
-    }
     private void Patrolling()
     {
         if (!walkpointSet)
@@ -147,20 +145,21 @@ public class EnemyAIMelee : MonoBehaviour
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
-
-
         if (!alreadyAttacked)
         {
             //AttackCodehere
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
 
-        if (isAttacking)
+        if (isAttacking) 
         {
             _animator.SetTrigger("attack");
+            
         }
+
     }
 
     private void ResetAttack()
@@ -171,30 +170,17 @@ public class EnemyAIMelee : MonoBehaviour
     // Attack method to player
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
-
-        var playerLifeController = collision.gameObject.GetComponent<PlayerLifeController>();
-        if (playerLifeController != null)
-            playerLifeController.TakeDamage(damage);
-
-
-    }
-    // Trigger to set death animation
-  /*  public void TakeDamage(float amount)
-    {
-        health -= amount;
-        if (health <= 0f)
+        Target locomotion = gameObject.GetComponent<Target>();
+        if (locomotion.isEnemyDead != true)
         {
-            Die();
+            if (!collision.gameObject.CompareTag("Player")) return;
+
+            var playerLifeController = collision.gameObject.GetComponent<PlayerLifeController>();
+            if (playerLifeController != null)
+                playerLifeController.TakeDamage(damage);
         }
 
+
     }
-    private void Die()
-    {
-        isEnemyDead = true;
-        _animator.SetTrigger("dead");
-        Destroy(gameObject, 5f);
-        return;
-    }*/
 }
 

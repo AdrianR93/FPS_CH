@@ -6,25 +6,32 @@ public class Target : MonoBehaviour
     public EnemyStatus enemyStatus;
     public float health;
     Animator _animator;
-    public static bool isEnemyDead;
+    public bool isEnemyDead;
+    public bool pointsToAdd;
 
     public void Start()
     {
+        pointsToAdd = false;
+        isEnemyDead = false;
         _animator = GetComponent<Animator>();
         health = enemyStatus.health;
     }
 
     public void Update()
     {
+
     }
 
     public void TakeDamage (float amount)
     {
-        health -= amount;
-        if (health <= 0f)
-        {
-            Die();
-        }
+
+            health -= amount;
+            Debug.Log($"Enemy hit for {amount}, current Enemy Health is {health}");
+            if (health <= 0f)
+            {
+                Die();
+            }
+
 
     }
 
@@ -33,6 +40,24 @@ public class Target : MonoBehaviour
         isEnemyDead = true;
         _animator.SetTrigger("dead");
         Destroy(gameObject, 5f);
-        return;
+        AddScore();
+        RenegadeBoss.shieldHeal = false;
+
+        
+    }
+
+    private void AddScore()
+    {
+        if (pointsToAdd == false)
+        {
+            GameManager.instance.AddPoints();
+            pointsToAdd = true;
+            
+        }
+    }
+
+    private void DestroyOnDeath()
+    {
+        Destroy(gameObject);
     }
 }

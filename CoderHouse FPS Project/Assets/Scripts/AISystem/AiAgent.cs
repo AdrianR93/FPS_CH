@@ -11,11 +11,16 @@ public class AiAgent : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public AiAgentConfig config;
     public Transform playerTransform;
+    public AudioSource audioSource;
+    public AudioClip intruderAlert;
+    public Target locomotion;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        locomotion = gameObject.GetComponent<Target>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         stateMachine = new AiStateMachine(this);
         stateMachine.RegisterState(new AiChasePlayerState());

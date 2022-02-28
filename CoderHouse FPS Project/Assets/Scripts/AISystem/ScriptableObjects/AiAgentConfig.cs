@@ -7,5 +7,6 @@ public class AiAgentConfig : ScriptableObject
 {
     public float maxTime = 1.0f;
     public float maxDistance = 1.0f;
-    public float maxSightDistance = 5.0f;
+    public float maxSightDistance =10.0f;
+    public AudioClip intruderAlert;
 }
